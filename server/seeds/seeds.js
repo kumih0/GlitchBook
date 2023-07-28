@@ -8,18 +8,39 @@ db.once('open', async () => {
     await Post.deleteMany({});
     await User.deleteMany({});
     // await Comment.deleteMany({});
-    
-    await User.create(userSeeds);
 
-    for (let i = 0; i < postSeeds.length; i++) {
-      const { _id, username } = await Post.create(postSeeds[i]);
-      const user = await User.findOneAndUpdate(
-        { username: username },
+    // Create users and store their _ids in an object for easy access
+    const userMap = {};
+    for (const userData of userSeeds) {
+      const user = await User.create(userData);
+      userMap[user.username] = user._id;
+    }
+
+    // Create posts with corresponding user _ids and add comments if necessary
+    for (const postData of postSeeds) {
+      const postAuthorId = userMap[postData.username];
+      const post = await Post.create({
+        ...postData,
+        username: undefined, // We don't want to store username in post collection
+        postAuthor: postAuthorId // Associate the post with the user by using postAuthor field
+      });
+
+      // If you have comments data in the postSeeds.json, add them to the post
+      if (postData.comments && postData.comments.length > 0) {
+        post.comments = postData.comments.map(comment => ({
+          ...comment,
+          username: undefined, // We don't want to store username in comments
+          commentAuthor: userMap[comment.username] // Associate the comment with the user by using commentAuthor field
+        }));
+        await post.save();
+      }
+
+      // Add the post _id to the user's posts array
+      await User.findOneAndUpdate(
+        { _id: postAuthorId },
         {
           $addToSet: {
-          
-            posts : _id,
-            postTitle: postSeeds[i].postTitle,
+            posts: post._id,
           },
         }
       );
