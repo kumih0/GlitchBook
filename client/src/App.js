@@ -27,6 +27,14 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+//instantiate apollo client
+const client = new ApolloClient({
+  //linking to http server
+  link: authLink.concat(httpLink),
+  //instantiate cache object
+  cache: new InMemoryCache(),
+});
+
 
 function App() {
   return (
