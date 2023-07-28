@@ -9,8 +9,12 @@ const cors = require('cors');
 const { json } = require('body-parser');
 const { typeDefs, resolvers } = require('./schemas');
 
+//importing mongoose connection
+const db = require('./config/connections');
+//importing auth middleware
+const { authMiddleware } = require('./utils/auth');
 
-
+const PORT = process.env.PORT || 3001;
 const app = express();
 const httpServer = http.createServer(app);
 const server = new ApolloServer({
@@ -18,7 +22,9 @@ const server = new ApolloServer({
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
+
 await server.start();
+
 app.use(
   '/graphql',
   cors(),
