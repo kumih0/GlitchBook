@@ -57,9 +57,9 @@ const resolvers = {
         },
         //add post mutation
         addPost: async (parent, { postBody }, context) => {
-            if(context.user) {
+            if (context.user) {
                 const post = await Post.create({
-                    postTitle, 
+                    postTitle,
                     postBody,
                     username: context.user.username,
                 });
@@ -73,4 +73,59 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
         },
-        
+        //add comment mutation
+        addComment: async (parent, { postId, commentBody }, context) => {
+            if (context.user) {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $push: { comments: { commentBody, username: context.user.username } } },
+                    { new: true, runValidators: true }
+                );
+
+                return updatedPost;
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        //add friend mutation
+        addFriend: async (parent, { friendId }, context) => {
+            try {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { friends: friendId } },
+                    { new: true }
+                ).populate('friends');
+
+                return updatedUser;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //update post mutation
+        updatePost: async (parent, { postId, postTitle, postBody }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { postTitle, postBody },
+                    { new: true, runValidators: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //update comment mutation
+        updateComment: async (parent, { postId, commentId, commentBody }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $set: { 'comments.$[comment].commentBody': commentBody } },
+                    { arrayFilters: [{ 'comment._id': commentId }], new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        }
