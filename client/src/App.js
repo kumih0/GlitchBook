@@ -1,5 +1,10 @@
+//these are the default imports from create-react-app
 import logo from './assets/logo.svg';
 import './assets/App.css';
+//import react and apollo dependencies
+import React from 'react';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+
 
 function App() {
   return (
