@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+const { Schema } = require('mongoose');
 
 const commentSchema = new Schema({
     commentBody: {
@@ -35,4 +35,4 @@ const commentSchema = new Schema({
     });
 
 //exporting commentschema
-export default commentSchema;
+module.exports = commentSchema;

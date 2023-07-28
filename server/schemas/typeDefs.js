@@ -1,7 +1,7 @@
-import { gql } from '@apollo/server';
+const { gql } = require('@apollo/server');
 
 //creating typeDefs
-const typeDefs = gql`
+const typeDefs = `#graphql
     type User {
         _id: ID
         username: String
@@ -70,4 +70,4 @@ const typeDefs = gql`
 `;
 
 //exporting typeDefs
-export default typeDefs;
+module.exports = typeDefs;

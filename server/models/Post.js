@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose';
+const { Schema, model } = require('mongoose');
 //importing commentschema as sub-document of post
-import commentSchema from './Comment';
+const commentSchema = require('./Comment');
 
 const postSchema = new Schema({
     postTitle: {
@@ -55,4 +55,4 @@ postSchema.virtual('commentCount').get(function () {
 const Post = model('Post', postSchema);
 
 //exporting post model
-export default Post;
+module.exports = Post;

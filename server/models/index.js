@@ -1,5 +1,5 @@
-import User from './User';
-import Post from './Post';
-import Comment from './Comment';
+const User = require('./User');
+const Post = require('./Post');
+const Comment = require('./Comment');
 
-export { User, Post, Comment };
+module.exports = { User, Post, Comment };

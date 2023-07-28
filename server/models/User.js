@@ -1,6 +1,7 @@
 //importing schema and models from mongoose
-import { Schema, model } from 'mongoose';
-import bcrypt from 'bcrypt';
+const { Schema, model } = require('mongoose');
+//importing bcrypt for password hashing
+const bcrypt = require('bcrypt');
 
 //creating user schema
 const userSchema = new Schema({
@@ -64,4 +65,4 @@ userSchema.virtual('friendCount').get(function () {
 const User = model('User', userSchema);
 
 //exporting user model
-export default User;
+module.exports = User;
