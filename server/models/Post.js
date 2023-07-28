@@ -4,7 +4,7 @@ import commentSchema from './Comment';
 
 const postSchema = new Schema({
     postBody: {
-        type: Text,
+        type: String,
         required: true,
         minlength: 1,
         maxlength: 1000,
