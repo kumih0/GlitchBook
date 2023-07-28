@@ -8,6 +8,11 @@ import { setContext } from '@apollo/client/link/context';
 //import react router dependencies
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //import pages here
+import Home from './pages/Home';
+import Login from './pages/Login';
+//import components here
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 //making GraphQL endpoint
 const httpLink = createHttpLink({
