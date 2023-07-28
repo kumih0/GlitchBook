@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema } from 'mongoose';
 
 const commentSchema = new Schema({
     commentId: {
@@ -37,8 +37,6 @@ const commentSchema = new Schema({
         },
         id: false
     });
-//creating comment model
-const Comment = model('Comment', commentSchema);
 
-//exporting comment model
-export default Comment;
+//exporting commentschema
+export default commentSchema;
