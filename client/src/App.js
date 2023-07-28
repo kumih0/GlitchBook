@@ -4,6 +4,28 @@ import './assets/App.css';
 //import react and apollo dependencies
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+//import react router dependencies
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+//import pages here
+
+//making GraphQL endpoint
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+//request middleware to attach jwt token to every request as authorization header
+const authLink = setContext((_, { headers }) => {
+  //get token from local storage
+  const token = localStorage.getItem('id_token');
+  //return headers to context
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
 
 function App() {
