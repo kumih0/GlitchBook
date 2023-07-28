@@ -1,6 +1,6 @@
 // npm install @apollo/server express graphql cors body-parser
 //copied from apollo server v4 documentation
-const  { ApolloServer } = require('@apollo/server');
+const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
 const express = require('express');
@@ -17,22 +17,31 @@ const { authMiddleware } = require('./utils/auth');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const httpServer = http.createServer(app);
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-});
 
-await server.start();
+async function startApolloServer() {
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+        plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    });
 
-app.use(
-  '/graphql',
-  cors(),
-  json(),
-  expressMiddleware(server, {
-    context: async ({ req }) => ({ token: req.headers.token }),
-  }),
-);
+    await server.start();
 
-await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
-console.log(`🚀 Server ready at http://localhost:4000/graphql`);
+    app.use(
+        '/graphql',
+        cors(),
+        json(),
+        expressMiddleware(server, {
+            context: async ({ req }) => ({ token: req.headers.token }),
+        }),
+    );
+
+    db.once('open', () => {
+        httpServer.listen(PORT, () => {
+            console.log(`API server running on port ${PORT}!`);
+            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+        });
+    });
+}
+
+startApolloServer();
