@@ -1,13 +1,15 @@
 // npm install @apollo/server express graphql cors body-parser
 //copied from apollo server v4 documentation
-import { ApolloServer } from '@apollo/server';
-import { expressMiddleware } from '@apollo/server/express4';
-import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import express from 'express';
-import http from 'http';
-import cors from 'cors';
-import { json } from 'body-parser';
-import { typeDefs, resolvers } from './schema';
+const  { ApolloServer } = require('@apollo/server');
+const { expressMiddleware } = require('@apollo/server/express4');
+const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
+const express = require('express');
+const http = require('http');
+const cors = require('cors');
+const { json } = require('body-parser');
+const { typeDefs, resolvers } = require('./schemas');
+
+
 
 const app = express();
 const httpServer = http.createServer(app);
