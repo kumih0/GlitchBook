@@ -67,3 +67,6 @@ const typeDefs = gql`
         deleteFriend(friendId: ID!): User
     }
 `;
+
+//exporting typeDefs
+export default typeDefs;
