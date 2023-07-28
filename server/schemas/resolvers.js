@@ -128,4 +128,33 @@ const resolvers = {
             } catch (err) {
                 console.log(err);
             }
-        }
+        },
+        //like post mutation
+        likePost: async (parent, { postId }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $inc: { likes: 1 } },
+                    { new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //dislike post mutation
+        dislikePost: async (parent, { postId }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $inc: { dislikes: 1 } },
+                    { new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        
