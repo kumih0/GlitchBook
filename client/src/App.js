@@ -3,14 +3,11 @@ import './styles/styles.css'
 import './styles/LoginForm.css'
 import { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
-import LoginInput from './components/login/LoginInput';
+// import LoginInput from './components/login/LoginInput';
 import TweetManager from './components/tweets/TweetManager';
 import SearchManager from './components/search/SearchManager';
-import TweetField from "./components/tweets/TweetField";
+// import TweetField from "./components/tweets/TweetField";
 import TweetPage from "./components/tweets/TweetPage";
-//these are the default imports from create-react-app
-import logo from './assets/logo.svg';
-import './assets/App.css';
 //import react and apollo dependencies
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -46,11 +43,6 @@ const client = new ApolloClient({
 });
 
 
-
-
-
-
-
 // Glitchbook app init
 function App() {
     const [currentUserData, setCurrentUserData] = useState({ login: "", id: -1 });
@@ -61,7 +53,6 @@ function App() {
 
     return (
         <ApolloProvider client={client}>
-            <Router>
                 <div className="App">
                     {(currentUserData.id === -1) ? (
                         <LoginForm updateCurrentUserData={updateUserData} />
@@ -75,7 +66,6 @@ function App() {
 
                     }
                 </div>
-            </Router>
         </ApolloProvider>
     );
 }
