@@ -185,4 +185,48 @@ const resolvers = {
                 console.log(err);
             }
         },
-        
+        //delete post mutation
+        deletePost: async (parent, { postId }, context) => {
+            try {
+                const deletedPost = await Post.findOneAndDelete({ _id: postId });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { posts: postId } }
+                );
+
+                return deletedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //delete comment mutation
+        deleteComment: async (parent, { postId, commentId }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $pull: { comments: { _id: commentId } } },
+                    { new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //remove friend mutation
+        deleteFriend: async (parent, { friendId }, context) => {
+            try {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { friends: friendId } },
+                    { new: true }
+                ).populate('friends');
+
+                return updatedUser;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+    },
+};
