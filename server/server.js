@@ -4,6 +4,13 @@ const { ApolloServer } = require('@apollo/server');
 const { authMiddleware } = require('./utils/auth');
 const path = require('path');
 const db = require('./config/connections');
+//importing expressMiddleware
+const { expressMiddleware } = require('@apollo/server/express4');
+//importing cors middleware
+const cors = require('cors');
+//importing json
+const { json } = require('body-parser');
+
 //importing typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas');
 
