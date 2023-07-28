@@ -32,4 +32,16 @@ const typeDefs = gql`
         dislikes: Int
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
+    type Query {
+        me: User
+        users: [User]
+        user(username: String!): User
+        posts(username: String): [Post]
+        post(postId: ID!): Post
+    }
     
