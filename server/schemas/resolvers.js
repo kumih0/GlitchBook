@@ -56,11 +56,11 @@ const resolvers = {
             return { token, user };
         },
         //add post mutation
-        addPost: async (parent, { postBody }, context) => {
+        addPost: async (parent, { postText }, context) => {
             if (context.user) {
                 const post = await Post.create({
                     postTitle,
-                    postBody,
+                    postText,
                     username: context.user.username,
                 });
 
@@ -74,11 +74,11 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
         },
         //add comment mutation
-        addComment: async (parent, { postId, commentBody }, context) => {
+        addComment: async (parent, { postId, commentText }, context) => {
             if (context.user) {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { $push: { comments: { commentBody, username: context.user.username } } },
+                    { $push: { comments: { commentText, username: context.user.username } } },
                     { new: true, runValidators: true }
                 );
 
@@ -102,11 +102,11 @@ const resolvers = {
             }
         },
         //update post mutation
-        updatePost: async (parent, { postId, postTitle, postBody }, context) => {
+        updatePost: async (parent, { postId, postTitle, postText }, context) => {
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { postTitle, postBody },
+                    { postTitle, postText },
                     { new: true, runValidators: true }
                 );
 
@@ -116,11 +116,11 @@ const resolvers = {
             }
         },
         //update comment mutation
-        updateComment: async (parent, { postId, commentId, commentBody }, context) => {
+        updateComment: async (parent, { postId, commentId, commentText }, context) => {
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { $set: { 'comments.$[comment].commentBody': commentBody } },
+                    { $set: { 'comments.$[comment].commentText': commentText } },
                     { arrayFilters: [{ 'comment._id': commentId }], new: true }
                 );
 

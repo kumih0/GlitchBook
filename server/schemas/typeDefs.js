@@ -15,7 +15,7 @@ const typeDefs = `#graphql
     type Post {
         _id: ID
         postTitle: String
-        postBody: String
+        postText: String
         username: String
         createdAt: String
         likes: Int
@@ -26,7 +26,7 @@ const typeDefs = `#graphql
 
     type Comment {
         _id: ID
-        commentBody: String
+        commentText: String
         username: String
         createdAt: String
         likes: Int
@@ -50,12 +50,12 @@ const typeDefs = `#graphql
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addPost(postTitle: String!, postBody: String!): Post
-        addComment(postId: ID!, commentBody: String!): Post
+        addPost(postTitle: String!, postText: String!): Post
+        addComment(postId: ID!, commentText: String!): Post
         addFriend(friendId: ID!): User
 
-        updatePost(postId: ID!, postTitle: String!, postBody: String!): Post
-        updateComment(postId: ID!, commentId: ID!, commentBody: String!): Post
+        updatePost(postId: ID!, postTitle: String!, postText: String!): Post
+        updateComment(postId: ID!, commentId: ID!, commentText: String!): Post
 
         likePost(postId: ID!): Post
         dislikePost(postId: ID!): Post
