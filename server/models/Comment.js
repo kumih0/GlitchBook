@@ -20,7 +20,7 @@ const commentSchema = new Schema({
         type: Date,
         default: Date.now,
         //use moment to format date
-        get: createdAtVal => dateFormat(createdAtVal)
+        get: timestamp => dateFormat(timestamp)
     },
     likes: {
         type: Number,
