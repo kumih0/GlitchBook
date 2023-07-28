@@ -32,7 +32,7 @@ async function startApolloServer() {
         cors(),
         json(),
         expressMiddleware(server, {
-            context: async ({ req }) => ({ token: req.headers.token }),
+            context: authMiddleware,
         }),
     );
 
