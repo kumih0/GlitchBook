@@ -3,6 +3,13 @@ import { Schema, model } from 'mongoose';
 import commentSchema from './Comment';
 
 const postSchema = new Schema({
+    postTitle: {
+        type: String,
+        required: true,
+        minlength: 1,
+        maxlength: 280,
+        trim: true
+    },
     postBody: {
         type: String,
         required: true,

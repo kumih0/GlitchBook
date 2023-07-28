@@ -14,6 +14,7 @@ const typeDefs = gql`
 
     type Post {
         _id: ID
+        postTitle: String
         postBody: String
         username: String
         createdAt: String
@@ -49,11 +50,11 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-        addPost(postBody: String!): Post
+        addPost(postTitle: String!, postBody: String!): Post
         addComment(postId: ID!, commentBody: String!): Post
         addFriend(friendId: ID!): User
 
-        updatePost(postId: ID!, postBody: String!): Post
+        updatePost(postId: ID!, postTitle: String!, postBody: String!): Post
         updateComment(postId: ID!, commentId: ID!, commentBody: String!): Post
 
         likePost(postId: ID!): Post

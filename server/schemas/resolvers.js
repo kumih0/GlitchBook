@@ -55,3 +55,22 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
+        //add post mutation
+        addPost: async (parent, { postBody }, context) => {
+            if(context.user) {
+                const post = await Post.create({
+                    postTitle, 
+                    postBody,
+                    username: context.user.username,
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { posts: post._id } }
+                );
+
+                return post;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        
