@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
 
 const commentSchema = new Schema({
-    commentBody: {
+    commentText: {
         type: String,
         required: true,
         minlength: 1,
