@@ -157,4 +157,32 @@ const resolvers = {
                 console.log(err);
             }
         },
+        //like comment mutation
+        likeComment: async (parent, { postId, commentId }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $inc: { 'comments.$[comment].likes': 1 } },
+                    { arrayFilters: [{ 'comment._id': commentId }], new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //dislike comment mutation
+        dislikeComment: async (parent, { postId, commentId }, context) => {
+            try {
+                const updatedPost = await Post.findOneAndUpdate(
+                    { _id: postId },
+                    { $inc: { 'comments.$[comment].dislikes': 1 } },
+                    { arrayFilters: [{ 'comment._id': commentId }], new: true }
+                );
+
+                return updatedPost;
+            } catch (err) {
+                console.log(err);
+            }
+        },
         
