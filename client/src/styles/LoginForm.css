@@ -1,89 +1,97 @@
+/* Set the height of the HTML element to 100% */
 html {
     height: 100%;
 }
 
+/* Style the body element */
 body {
     margin:0;
     padding:0;
     font-family: sans-serif;
-    background: linear-gradient(#1d2821, #1d2128);
+    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
     background-repeat: no-repeat;
-    height: 100%;
-    background-attachment: fixed;
+    height: 100%; /* Set the body height to 100% */
+    background-attachment: fixed; /* Fix the background to the viewport */
 }
 
+/* Style the form container */
 .inner-form {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; /* Place the form at the vertical center of its container */
+    left: 50%; /* Place the form at the horizontal center of its container */
     width: 400px;
     padding: 40px;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,.5);
+    transform: translate(-50%, -50%); /* Center the form using translation */
+    background: rgba(0,0,0,.5); /* Apply a semi-transparent background */
     box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(0,0,0,.6);
-    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6); /* Add a shadow to the form */
+    border-radius: 10px; /* Round the corners of the form */
 }
 
+/* Style the heading inside the form */
 .inner-form h2 {
     margin: 0 0 30px;
     padding: 0;
-    color: #fff;
-    text-align: center;
+    color: #fff; /* Set the text color to white */
+    text-align: center; /* Center the text */
 }
 
+/* Style the error messages inside the form */
 .inner-form .error {
     margin: 0 0 30px;
     padding: 0;
-    color: #ee6055;
-    text-align: center;
+    color: #ee6055; /* Set the error text color */
+    text-align: center; /* Center the error text */
 }
 
+/* Style the form input container */
 .inner-form .form-input {
     position: relative;
 }
 
+/* Style the form input fields */
 .inner-form .form-input input {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
-    color: #fff;
+    color: #fff; /* Set the text color to white */
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid #fff; /* Add a bottom border to the input */
     outline: none;
     background: transparent;
 }
+
+/* Style the form input labels */
 .inner-form .form-input label {
     position: absolute;
-    top: -20px;
+    top: -20px; /* Position the label above the input field */
     left: 0;
     padding: 10px 0;
     font-size: 14px;
-    color: #fff;
+    color: #fff; /* Set the label text color to white */
     pointer-events: none;
     transition: .5s;
     line-height: 1.1;
     font-family: "Dank Mono", ui-monospace, monospace;
     background: linear-gradient(
             to right, #6ce972, #ccff33
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
+    ); /* Apply a gradient effect to the label text */
+    -webkit-background-clip: text; /* Clip the background to the text */
+    -webkit-text-fill-color: transparent; /* Make the text transparent */
+    text-align: center; /* Center the label text */
 }
 
+/* Style the submit button */
 .inner-form input[type=submit] {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-
     font-size: 16px;
-    color: #fff;
+    color: #fff; /* Set the text color to white */
     line-height: 1.1;
     font-family: "Dank Mono", ui-monospace, monospace;
-    background: linear-gradient(#1d2821, #1d2128);
-
+    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
@@ -91,31 +99,31 @@ body {
     margin-top: 35px;
     margin-left: 15px;
     letter-spacing: 4px;
-    border-radius: 15px;
-    border-color: #6ce972;
+    border-radius: 15px; /* Round the corners of the button */
+    border-color: #6ce972; /* Set the border color */
 }
 
+/* Style the submit button on hover */
 .inner-form input[type=submit]:hover {
-    background: linear-gradient(#304538, #2b3834);
+    background: linear-gradient(#304538, #2b3834); /* Apply a different gradient on hover */
     color: #fff;
-    border-radius: 5px;
+    border-radius: 5px; /* Slightly round the corners on hover */
     box-shadow: 0 0 5px #56e304,
     0 0 8px #56e304,
     0 0 25px #56e304,
-    0 0 60px #56e304;
+    0 0 60px #56e304; /* Add a glowing effect on hover */
 }
 
+/* Style the register button */
 .inner-form button[name=register] {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-
     font-size: 16px;
-    color: #fff;
+    color: #fff; /* Set the text color to white */
     line-height: 1.1;
     font-family: "Dank Mono", ui-monospace, monospace;
-    background: linear-gradient(#1d2821, #1d2128);
-
+    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
@@ -123,16 +131,17 @@ body {
     margin-top: 35px;
     margin-left: 15px;
     letter-spacing: 4px;
-    border-radius: 15px;
-    border-color: #6ce972;
+    border-radius: 15px; /* Round the corners of the button */
+    border-color: #6ce972; /* Set the border color */
 }
 
+/* Style the register button on hover */
 .inner-form button[name=register]:hover {
-    background: linear-gradient(#304538, #2b3834);
+    background: linear-gradient(#304538, #2b3834); /* Apply a different gradient on hover */
     color: #fff;
-    border-radius: 5px;
+    border-radius: 5px; /* Slightly round the corners on hover */
     box-shadow: 0 0 5px #56e304,
     0 0 8px #56e304,
     0 0 25px #56e304,
-    0 0 60px #56e304;
+    0 0 60px #56e304; /* Add a glowing effect on hover */
 }
