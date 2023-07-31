@@ -1,3 +1,4 @@
+// Importing the 'useState' and 'useEffect' hooks from React, 'SearchField' component, and various helper functions.
 import { useEffect, useState } from "react";
 import SearchField from "./SearchField";
 import { findTweet, findUser, getTags, removeTagsJson, sortTweets } from "../../functions/TagsHelper"
@@ -5,6 +6,7 @@ import Tweet from "../tweets/Tweet";
 import { useLocation } from "react-router";
 import HomeButton from "../HomeButton/HomeButton";
 
+// Function to find the index of an object with a specific "id" property in an array of objects
 const findTag = (array, tag) => {
     for (let i = 0; i < array.length; i++) {
         if (array[i].id === parseInt(tag)) {
@@ -14,24 +16,27 @@ const findTag = (array, tag) => {
     return -1;
 }
 
-
+// The 'SearchManager' component that takes 'userData' as a prop.
 const SearchManager = ({ userData }) => {
+    // Setting up state variables using the 'useState' hook.
     const [tagTweets, setTagTweets] = useState([]);
     const link = useLocation();
     const userId = userData.id;
 
+    // Local variables.
     let tag = link.pathname.substring(8, link.pathname.length);
     let k = 0;
 
     let pressedLike = false;
     let pressedDislike = false;
 
+    // Effect hook to trigger fetching data whenever 'link' changes.
     useEffect(() => {
         tag = link.pathname.substring(8, link.pathname.length);
         fetchSet(tag);
     }, [link]);
 
-
+    // Function to fetch tweets related to the given tag.
     const fetchSet = (tag) => {
         let t = [];
         let tagTweetsID = [];
@@ -60,7 +65,7 @@ const SearchManager = ({ userData }) => {
         }
     }
 
-
+    // Function to remove a tweet and its associated tags from the database.
     const onRemove = async (id, tag) => {
         await fetch('http://localhost:3001/tweets/' + id,).then(response => response.json()).then(tweet => {
             if (tweet.uid === userId) {
@@ -74,6 +79,7 @@ const SearchManager = ({ userData }) => {
         await fetchSet(tag);
     }
 
+    // Function to handle the 'dislike' action on a tweet.
     const onDislike = async (id, dislikes, disliked) => {
         if (!pressedDislike) {
             let user_ind = findUser(disliked, userId);
@@ -95,6 +101,7 @@ const SearchManager = ({ userData }) => {
         }
     }
 
+    // Function to handle the 'like' action on a tweet.
     const onLike = async (id, likes, liked) => {
         if (!pressedLike) {
             let user_ind = findUser(liked, userId);
@@ -116,6 +123,7 @@ const SearchManager = ({ userData }) => {
         }
     }
 
+    // Function to map and render tweets as 'Tweet' components.
     const mapTweets = () => {
         console.log(tagTweets);
         if (tagTweets.length > 0) {
@@ -128,13 +136,18 @@ const SearchManager = ({ userData }) => {
         }
     }
 
-    return <div>
-        <HomeButton />
-        <SearchField />
-        {
-            mapTweets()
-        }
-    </div>
-
+    // JSX code for rendering the 'SearchManager' component.
+    return (
+        <div>
+            {/* A 'HomeButton' component to navigate back to the home page. */}
+            <HomeButton />
+            {/* Rendering the 'SearchField' component for users to perform searches. */}
+            <SearchField />
+            {/* Rendering the mapped tweets using the 'mapTweets' function. */}
+            {mapTweets()}
+        </div>
+    )
 }
+
+// Exporting the 'SearchManager' component as the default export for this module.
 export default SearchManager;
