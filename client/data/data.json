@@ -1,0 +1,30 @@
+{
+  "tweets": [
+    {
+      "value": "Welcome to Twister! #please_give_us_points",
+      "id": 1654287104679,
+      "uid": 1654287086,
+      "username": "Ade0n",
+      "likes": 0,
+      "dislikes": 0,
+      "liked": [],
+      "disliked": []
+    }
+  ],
+  "tags": [
+    {
+      "tweets": [
+        1654287104679
+      ],
+      "id": 1273171624,
+      "tag": "#please_give_us_points"
+    }
+  ],
+  "users": [
+    {
+      "login": "Ade0n",
+      "password": "[1456260316,-57257141,117181448,-1560166876,-247772908,-2066359932,-1791180581,-1447315302]",
+      "id": 1654287086
+    }
+  ]
+}
