@@ -1,0 +1,53 @@
+[
+    {
+      "username": "TechJoker42",
+      "email": "techjoker42@techfriends.dev",
+      "password": "password01"
+    },
+    {
+      "username": "MaxTheMadCoder",
+      "email": "maxthemadcoder@techfriends.dev",
+      "password": "password02"
+    },
+    {
+      "username": "CodeNinja007",
+      "email": "codeninja007@techfriends.dev",
+      "password": "password03"
+    },
+    {
+      "username": "BeckyGeek",
+      "email": "beckygeek@techfriends.dev",
+      "password": "password04"
+    },
+    {
+      "username": "BinaryBerard",
+      "email": "binaryberard@techfriends.dev",
+      "password": "password05"
+    },
+    {
+      "username": "KayKodeMaster",
+      "email": "kaykodemaster@techfriends.dev",
+      "password": "password06"
+    },
+    {
+      "username": "HackerHoare",
+      "email": "hackerhoare@techfriends.dev",
+      "password": "password07"
+    },
+    {
+      "username": "DebugDave",
+      "email": "debugdave@techfriends.dev",
+      "password": "password08"
+    },
+    {
+      "username": "KnuthTheWizard",
+      "email": "knuththewizard@techfriends.dev",
+      "password": "password09"
+    },
+    {
+      "username": "LernyMcLernFace",
+      "email": "lernymclernface@techfriends.dev",
+      "password": "password10"
+    }
+  ]
+  

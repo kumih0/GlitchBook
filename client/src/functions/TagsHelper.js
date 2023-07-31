@@ -1,3 +1,4 @@
+// Function to extract hashtags from a given string value and return an array of hashtags
 const getTags = (value) => {
     let tags = [];
     let lastInd = 0;
@@ -17,6 +18,7 @@ const getTags = (value) => {
     return tags;
 }
 
+// Function to find the index of an object with a specific "tag" property in an array of objects
 const findTag = (array, tag) => {
     for (let i = 0; i < array.length; i++) {
         if (array[i].tag === tag) {
@@ -26,6 +28,7 @@ const findTag = (array, tag) => {
     return -1;
 }
 
+// Function to find the index of an object with a specific "id" property in an array of objects
 const findTweet = (array, tweet) => {
     for (let i = 0; i < array.length; i++) {
         if (array[i].id === tweet) {
@@ -35,6 +38,7 @@ const findTweet = (array, tweet) => {
     return -1;
 }
 
+// Function to add a tweet ID to the tweets array of a specific tag in the JSON database
 const addTagsJson = (tag, tweetId) => {
     let tagTweets = [];
     let tagHash = hash(tag);
@@ -59,7 +63,7 @@ const addTagsJson = (tag, tweetId) => {
     });
 }
 
-
+// Function to remove a tweet ID from the tweets array of a specific tag in the JSON database
 const removeTagsJson = (tag, tweetId) => {
     let tagTweets = [];
     let tagHash = hash(tag);
@@ -76,7 +80,7 @@ const removeTagsJson = (tag, tweetId) => {
     });
 }
 
-
+// Function to generate a hash value for a given string !
 const hash = (value) => {
     let hash = 0;
     for (let i = 0; i < value.length; i++) {
@@ -87,6 +91,7 @@ const hash = (value) => {
     return hash;
 }
 
+// Function to find the index of a value in an array
 const findUser = (array, id) => {
     for (let i = 0; i < array.length; i++) {
         if (array[i] === id) {
@@ -96,6 +101,7 @@ const findUser = (array, id) => {
     return -1;
 }
 
+// Function to sort an array of tweets based on their "id" property in descending order
 const sortTweets = (t) => {
     let sorted = t;
     sorted.sort((a, b) => (a.id < b.id) ? 1 : 0)
