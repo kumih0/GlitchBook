@@ -80,7 +80,7 @@ const removeTagsJson = (tag, tweetId) => {
     });
 }
 
-// Function to generate a hash value for a given string
+// Function to generate a hash value for a given string !
 const hash = (value) => {
     let hash = 0;
     for (let i = 0; i < value.length; i++) {
