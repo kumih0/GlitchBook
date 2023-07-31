@@ -166,6 +166,7 @@ body {
     text-align: center;
 }
 
+
 .search-box .user-box input:focus ~ label,
 .search-box .user-box input:valid ~ label {
     top: -30px;
@@ -491,3 +492,5 @@ body {
 .del-button {
     padding: 5px;
 }
+
+/* Move up the search box label when the input is focused or has value */
