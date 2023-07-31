@@ -1,151 +1,142 @@
-/* Style the logo row */
 .logo-row {
-    text-align: center; /* Center the content horizontally */
-    display: block;
-    margin: 0 auto; /* Center the block element within its container */
+    text-align: center;
+    display : block;
+    margin : 0 auto;
 }
 
-/* Style the logo corner */
 .logo-corner {
-    text-align: left; /* Align the content to the left */
-    display: block;
-    margin: 0 auto; /* Center the block element within its container */
-    position: absolute; /* Position the element absolutely */
-    left: 90%; /* Position the element 90% from the left side of its containing element */
-    top: 50px; /* Position the element 50 pixels from the top of its containing element */
+    text-align: left;
+    display : block;
+    margin : 0 auto;
+    position: absolute;
+    left: 90%;
+    top: 50px;
 }
 
-/* Style the main logo */
 .logo {
     width: 80px;
     height: 60px;
-    text-align: center; /* Center the text horizontally */
+    text-align: center;
 }
 
-/* Style a smaller version of the logo */
 .logo-small {
     width: 40px;
     height: 30px;
-    text-align: center; /* Center the text horizontally */
+    text-align: center;
 }
 
-/* Style the first-level heading */
 h1 {
     font-size: 4vmin;
     line-height: 1.3;
     font-family: "Dank Mono", ui-monospace, monospace;
-    background: linear-gradient(to right, #6ce972, #ccff33); /* Apply a gradient background to the text */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Make the text transparent */
-    text-align: center; /* Center the text horizontally */
+    background: linear-gradient(
+            to right, #6ce972, #ccff33
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
 }
 
-/* Style the second-level heading */
 h2 {
     font-size: 3vmin;
     line-height: 1.3;
     font-family: "Dank Mono", ui-monospace, monospace;
-    color: #fff; /* Set the text color to white */
-    text-align: center; /* Center the text horizontally */
+    color: #fff;
+    text-align: center;
 }
 
-/* Style the third-level heading */
 h3 {
     font-size: 2vmin;
     line-height: 0.8;
     font-family: "Dank Mono", ui-monospace, monospace;
-    background: linear-gradient(to right, #80ff90, #80ff90, #ccff33, #ccff33); /* Apply a gradient background to the text */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Make the text transparent */
-    text-align: center; /* Center the text horizontally */
+    background: linear-gradient(
+            to right, #80ff90, #80ff90, #ccff33, #ccff33
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
 }
 
-/* Style the fourth-level heading */
 h4 {
     font-size: 1.5vmin;
     line-height: 1;
     font-family: "Dank Mono", ui-monospace, monospace;
-    color: #fff; /* Set the text color to white */
-    text-align: center; /* Center the text horizontally */
+    color: #fff;
+    text-align: center;
 }
 
-/* Set the height of the HTML element to 100% */
 html {
     height: 100%;
 }
 
-/* Style the body element */
 body {
     margin:0;
     padding:0;
     font-family: sans-serif;
-    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
+    background: linear-gradient(#1d2821, #1d2128);
     background-repeat: no-repeat;
-    height: 100%; /* Set the body height to 100% */
-    background-attachment: fixed; /* Fix the background to the viewport */
+    height: 100%;
+    background-attachment: fixed;
 }
 
-/* Style the logout button */
 .log-out {
     left: 75%;
 }
 
-/* Style header buttons */
 .header-button {
     position: absolute;
     top: 45px;
     display: inline-block;
     padding: 10px 15px;
+
     font-size: 12px;
     color: #fff;
     line-height: 1.1;
     font-family: "Dank Mono", ui-monospace, monospace;
-    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
-    box-shadow: 0 10px 15px rgba(47, 104, 38, 0.60); /* Add a shadow to the button */
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
+
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     letter-spacing: 4px;
-    border-radius: 12px; /* Round the corners of the button */
-    border-color: #6ce972; /* Set the border color */
+    border-radius: 12px;
+    border-color: #6ce972;
 }
 
-/* Style header buttons on hover */
 .header-button:hover {
-    background: linear-gradient(#304538, #2b3834); /* Apply a different gradient on hover */
+    background: linear-gradient(#304538, #2b3834);
     color: #fff;
-    border-radius: 5px; /* Slightly round the corners on hover */
+    border-radius: 5px;
     box-shadow: 0 0 5px #56e304,
     0 0 8px #56e304,
     0 0 25px #56e304,
-    0 0 60px #56e304; /* Add a glowing effect on hover */
+    0 0 60px #56e304;
 }
 
-/* Style the search box */
 .search-box {
     width: 500px;
     position: relative;
     top: 5%;
+    /* left: 15%; */
     height: 1%;
     padding: 20px;
     margin: auto;
+    
 }
 
-/* Style the search box input */
 .search-box input {
-    background: linear-gradient(#1d2821, #1d2128); /* Apply a gradient background */
-    box-shadow: 0 10px 15px rgba(47, 104, 38, 0.60); /* Add a shadow to the input field */
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
     box-sizing: border-box;
-    border-radius: 20px; /* Round the corners of the input field */
+    border-radius: 20px;
 }
 
-/* Style the search box input for users and tweets */
 .search-box .user-box .tweet-box {
     position: relative;
 }
 
-/* Style the search box input for tweets */
 .search-box .user-box .tweet-box input {
     position: absolute;
     width: 100%;
@@ -156,15 +147,14 @@ body {
     color: #fff;
     margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #6ce972; /* Add a green bottom border to the input */
+    border-bottom: 1px solid #6ce972;
     outline: none;
     background: transparent;
 }
 
-/* Style the search box labels */
 .search-box .user-box label {
     position: absolute;
-    top: -20px; /* Position the label above the input field */
+    top: -20px;
     left: 0;
     padding: 10px 0;
     font-size: 16px;
@@ -174,9 +164,330 @@ body {
     line-height: 1.1;
     font-family: "Dank Mono", ui-monospace, monospace;
     text-align: center;
-    background: linear-gradient(to right, #80ff90, #80ff90, #ccff33, #ccff33); /* Apply a gradient background to the label text */
-    -webkit-background-clip: text; /* Clip the background to the text */
-    -webkit-text-fill-color: transparent; /* Make the text transparent */
 }
 
-/* Move up the search box label when the input is focused or has value
+.search-box .user-box input:focus ~ label,
+.search-box .user-box input:valid ~ label {
+    top: -30px;
+    left: 0;
+    color: #fff;
+    font-size: 12px;
+}
+
+.search-box input[type=submit] {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+
+    font-size: 16px;
+    color: rgb(235, 18, 18);
+    line-height: 1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
+
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border-radius: 20px;
+    border-color: #6ce972;
+}
+
+.search-box input[type=submit]:hover {
+    background: linear-gradient(#304538, #2b3834);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #56e304,
+    0 0 8px #56e304,
+    0 0 25px #56e304,
+    0 0 60px #56e304;
+}
+
+.search-box button {
+    /* top: 40px; */
+    float: right;
+    padding: 5px;
+    position: relative;
+    margin-right: 15px;
+    display: inline;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.20);
+    color: #56e304;
+    overflow: hidden;
+    transition: .5s;
+    border-radius: 12px;
+    border-color: #6ce972;
+    margin-top: 9px;
+}
+
+.search-box button:hover {
+    background: linear-gradient(#304538, #2b3834);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #56e304,
+    0 0 8px #56e304,
+    0 0 25px #56e304,
+    0 0 60px #56e304;
+}
+
+.search-box input {
+    width: 83%;
+    padding: 10px;
+
+    display: inline-block;
+
+    font-size: 16px;
+    color: #80ff90;
+    line-height: 1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
+
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border-radius: 20px;
+    border-color: #6ce972;
+}
+
+.tweet-box textarea {
+    height: 80px;
+    width: 80%;
+    padding: 10px;
+
+    display: inline-block;
+
+    font-size: 16px;
+    color: #80ff90;
+    line-height: 1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
+
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border-radius: 20px;
+    border-color: #6ce972;
+    resize: none;
+}
+
+.tweet-box button {
+    margin-top: 35px;
+}
+
+
+.post {
+    position: relative;
+    left: 50%;
+    width: 850px;
+    /*TODO: FIX THIS*/
+    height: 160px;
+    padding-left: 50px;
+    padding-top: 10px;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+    border-radius: 10px;
+    margin-top: 100px;
+}
+
+.post .header-info label {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    line-height: 1.1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    text-align: center;
+}
+
+.post .header-info p {
+    position: relative;
+    top: 30px;
+    width: 600px;
+    padding: 10px 0;
+    font-size: 14px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    line-height: 1.1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    text-align: left;
+}
+
+.post-image {
+    text-align: left;
+    display : block;
+    margin : 0 auto;
+    position: relative;
+    top: 40px;
+    left: 38%;
+}
+
+/*TODO:*/
+.post-img img {
+    width: 150px;
+    height: 150px;
+    /*background: linear-gradient(#1d2821, #1d2128);*/
+    background: white;
+}
+
+.post .bottom-section p {
+    position: relative;
+    top: 30px;
+    padding: 10px 10px;
+    font-size: 14px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    line-height: 1.1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    text-align: left;
+    display: inline;
+    float: right;
+}
+
+.bottom-section button {
+    top: 40px;
+    float: right;
+    padding-top: 5px;
+    position: relative;
+    margin-right: 15px;
+    display: inline;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.20);
+    color: #56e304;
+    overflow: hidden;
+    transition: .5s;
+    border-radius: 12px;
+    border-color: #6ce972;
+}
+
+.bottom-section button:hover {
+    background: linear-gradient(#304538, #2b3834);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #56e304,
+    0 0 8px #56e304,
+    0 0 25px #56e304,
+    0 0 60px #56e304;
+}
+
+.bottom-section img {
+    width: 20px;
+    height: 20px;
+}
+
+.comment-box {
+    top: 73px;
+    position: relative;
+    left: 45%;
+    width: 250px;
+    height: 30px;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.20);
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.comment-box input[type=text] {
+    position: absolute;
+    margin-left: 5%;
+    width: 210px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid #6ce972;
+    outline: none;
+    background: transparent;
+}
+
+.comment-box label {
+    position: relative;
+    margin-left: 7%;
+    font-size: 14px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    line-height: 1.1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    text-align: center;
+
+    background: linear-gradient(
+            to right, #80ff90, #80ff90, #ccff33, #ccff33
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.comment-box input:not(:placeholder-shown) ~ label {
+    font-size: 0px;
+}
+
+.comment-box input[type=submit] {
+    position: absolute;
+    left: 100%;
+    display: inline-block;
+    padding: 7px 7px;
+
+    font-size: 12px;
+    color: #fff;
+    line-height: 1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.20);
+
+    text-decoration: none;
+    overflow: hidden;
+    transition: .5s;
+    letter-spacing: 4px;
+    border-radius: 20px;
+    border-color: #6ce972;
+}
+
+.comment-box input[type=submit]:hover {
+    background: linear-gradient(#304538, #2b3834);
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #56e304,
+    0 0 8px #56e304,
+    0 0 25px #56e304,
+    0 0 60px #56e304;
+}
+
+.butonckik-home button{
+    background-color: transparent;
+    border: none;
+
+    margin: 10px;
+
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50px;
+ 
+
+}
+
+.butonckik-home img {
+    width: 60px;
+}
+
+.butonckik-home button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+
+}
+
+.del-button {
+    padding: 5px;
+}
