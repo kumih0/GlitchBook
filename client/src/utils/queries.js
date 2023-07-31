@@ -14,7 +14,7 @@ query Query {
     }
   }`;
 
-  export const GET_USER = `#graphql
+export const GET_USER = `#graphql
   query Query($username: String!) {
     user(username: $username) {
       _id
@@ -26,6 +26,17 @@ query Query {
         createdAt
       }
     }
-  }
-    `;
-      
+  }`;
+
+  export const ALL_POSTS = `#graphql
+  query Query {
+    posts {
+      _id
+      postText
+      postTitle
+      likes
+      dislikes
+    }
+  }`;
+  
+  
