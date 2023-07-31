@@ -49,20 +49,15 @@ const typeDefs = `#graphql
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-
         addPost(postTitle: String!, postText: String!): Post
         addComment(postId: ID!, commentText: String!): Post
         addFriend(friendId: ID!): User
-
         updatePost(postId: ID!, postTitle: String!, postText: String!): Post
         updateComment(postId: ID!, commentId: ID!, commentText: String!): Post
-
         likePost(postId: ID!): Post
         dislikePost(postId: ID!): Post
-
         likeComment(postId: ID!, commentId: ID!): Post
         dislikeComment(postId: ID!, commentId: ID!): Post
-
         deletePost(postId: ID!): Post
         deleteComment(postId: ID!, commentId: ID!): Post
         deleteFriend(friendId: ID!): User
