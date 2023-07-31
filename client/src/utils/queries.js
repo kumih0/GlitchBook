@@ -13,3 +13,19 @@ query Query {
       }
     }
   }`;
+
+  export const GET_USER = `#graphql
+  query Query($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      posts {
+        postText
+        postTitle
+        createdAt
+      }
+    }
+  }
+    `;
+      
