@@ -11,39 +11,51 @@ db.once('open', async () => {
 
     // Create users and store their _ids in an object for easy access
     const userMap = {};
+    const user_ID = [];
     for (const userData of userSeeds) {
       const user = await User.create(userData);
-      userMap[user.username] = user._id;
+    //   userMap[user.username] = user._id;
+        user_ID.push(user._id);
     }
 
     // Create posts with corresponding user _ids and add comments if necessary
     for (const postData of postSeeds) {
-      const postAuthorId = userMap[postData.username];
-      const post = await Post.create({
-        ...postData,
-        username: undefined, // We don't want to store username in post collection
-        postAuthor: postAuthorId // Associate the post with the user by using postAuthor field
-      });
+        // console.log(userMap[0])
+    //   const postAuthorId = userMap[postData.username];
+    //   console.log("hello", postAuthorId);
+    //   const { postTitle, postText, username, comments, ...rest } = postData;
+
+    //   const post = await Post.create({
+    //     postTitle, // Use postTitle from the postSeeds.json
+    //     postText, // Use postText from the postSeeds.json
+    //     username, // Use username from the postSeeds.json
+    //     postAuthor: postAuthorId, // Associate the post with the user by using postAuthor field
+    //     ...rest // Include any other properties from the postSeeds.json if needed
+    //   });
+const post =await Post.create(postData);
+for (const userid of user_ID) {
+
+    await User.findOneAndUpdate({ _id: userid }, { $addToSet: { posts: post._id } });
+}
 
       // If you have comments data in the postSeeds.json, add them to the post
-      if (postData.comments && postData.comments.length > 0) {
-        post.comments = postData.comments.map(comment => ({
-          ...comment,
-          username: undefined, // We don't want to store username in comments
-          commentAuthor: userMap[comment.username] // Associate the comment with the user by using commentAuthor field
-        }));
-        await post.save();
-      }
+    //   if (comments && comments.length > 0) {
+    //     post.comments = comments.map(comment => ({
+    //       commentText: comment.commentText, // Use commentText from the postSeeds.json
+    //       username: comment.username // Use username from the postSeeds.json
+    //     }));
+    //     await post.save();
+    //   }
 
       // Add the post _id to the user's posts array
-      await User.findOneAndUpdate(
-        { _id: postAuthorId },
-        {
-          $addToSet: {
-            posts: post._id,
-          },
-        }
-      );
+    //   await User.findOneAndUpdate(
+    //     { _id: postAuthorId },
+    //     {
+    //       $addToSet: {
+    //         posts: post._id,
+    //       },
+    //     }
+    //   );
     }
   } catch (err) {
     console.error(err);
