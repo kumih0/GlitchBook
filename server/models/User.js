@@ -2,6 +2,8 @@
 const { Schema, model } = require('mongoose');
 //importing bcrypt for password hashing
 const bcrypt = require('bcrypt');
+//importing badgeschema as sub-document of user
+const badgeSchema = require('./Badges');
 
 //creating user schema
 const userSchema = new Schema({
@@ -61,6 +63,11 @@ userSchema.methods.isCorrectPassword = async function (password) {
 //creating virtual to count friends
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
+});
+
+//creating virtual to count total badges
+userSchema.virtual('badgeCount').get(function () {
+    return this.badges.length;
 });
 
 //creating user model
