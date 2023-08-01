@@ -130,8 +130,8 @@ db.once('open', async () => {
     //possibly? badge data here?
 
     //add hardcoded user data to users array
-    users.push(...userSeeds);
-    console.log(users);
+    // users.push(...userSeeds);
+    // console.log(users);
     //insert many users into db
     await User.collection.insertMany(users);
     //insert many posts into db

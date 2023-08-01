@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('@apollo/server');
+// const { AuthenticationError } = require('@apollo/server');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -43,13 +43,15 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('No user found with this email address');
+                // throw new AuthenticationError('No user found with this email address');
+                console.log('No user found with this email address');
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
+                // throw new AuthenticationError('Incorrect credentials');
+                console.log('Incorrect credentials');
             }
 
             const token = signToken(user);
