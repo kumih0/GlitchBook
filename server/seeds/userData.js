@@ -95,7 +95,6 @@ const randomNounArray = [
     'albatross',
     'alligator',
     'alpaca',
-    'asshole',
     'anus',
     'asphalt',
     'axolotl',
