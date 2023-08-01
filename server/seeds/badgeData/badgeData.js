@@ -98,7 +98,7 @@ const commentBadges = [
         image: '',
     },
     {
-        name: 'Mass Debater',
+        name: 'Mass Debator',
         description: 'Make five comments',
         image: '',
     },
@@ -133,7 +133,7 @@ const commentBadges = [
         image: '',
     },
 ];
-
+//wtf is this
 const allBadges = badgeData.concat(postBadges, commentBadges);
 
 module.exports = allBadges;

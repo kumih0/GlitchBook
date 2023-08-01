@@ -1,5 +1,4 @@
 //helper functions for random generation of seed data
-
 //get random array item, code from miniproject
 const getRandomArrayItem = (array) => array[Math.floor(Math.random() * array.length)];
 

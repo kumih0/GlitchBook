@@ -198,4 +198,9 @@ const randomNounArray = [
 const randomUsername = () =>
     `${getRandomArrayItem(randomAdjectiveArray)}${getRandomArrayItem(randomNounArray)}${Math.floor(Math.random() * 100 + 1)}`;
 
-module.exports = randomUsername;
+//making basic password
+const makePassword = (index) => {
+    return password = `password${index}`
+}
+
+module.exports = {randomUsername, makePassword};

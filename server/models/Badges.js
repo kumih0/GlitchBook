@@ -22,6 +22,7 @@ const badgeSchema = new Schema({
         //use moment to format date
         get: timestamp => dateFormat(timestamp),
     },
+    //points? >:D
 },
 {
     toJSON: {
