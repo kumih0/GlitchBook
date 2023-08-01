@@ -133,3 +133,7 @@ const commentBadges = [
         image: '',
     },
 ];
+
+const allBadges = badgeData.concat(postBadges, commentBadges);
+
+module.exports = allBadges;
