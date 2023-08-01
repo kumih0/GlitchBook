@@ -201,6 +201,6 @@ const randomUsername = () =>
 //making basic password
 const makePassword = (index) => {
     return password = `password${index}`
-}
+};
 
 module.exports = {randomUsername, makePassword};

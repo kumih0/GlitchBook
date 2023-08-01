@@ -13,7 +13,6 @@ db.once('open', async () => {
     await Post.deleteMany({});
     await User.deleteMany({});
 
-    const user = [];
 
 
     // // Create users and store their _ids in an object for easy access
@@ -33,7 +32,7 @@ db.once('open', async () => {
     //   }
     // }
 
-    
+
   } catch (err) {
     console.error(err);
     process.exit(1);
