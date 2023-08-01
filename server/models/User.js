@@ -32,6 +32,8 @@ const userSchema = new Schema({
             ref: 'Post',
         },
     ],
+    //badges array, referencing badge model. sub doc to user
+    badges: [badgeSchema],
 },
     {
         toJSON: {
