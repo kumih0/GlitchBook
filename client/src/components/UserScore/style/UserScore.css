@@ -1,0 +1,29 @@
+/* UserScore container */
+.user-score {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: auto; /* Align to the bottom half of the main container */
+    margin-bottom: 30px; /* Increased margin to maintain spacing */
+    /* Bevel effect to match the container */
+    border-radius: 10px;
+    padding: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    /* Force the UserScore container to take the remaining width */
+    width: 100%;
+    /* Align the UserScore container to the bottom */
+    align-self: flex-end;
+  }
+  
+  /* Individual Achievement Container */
+  .achievement-item {
+    width: 50px; /* Size of 50px by 50px */
+    height: 50px; /* Size of 50px by 50px */
+    margin: 5px; /* Spacing between achievements */
+    /* Add your desired styling for individual achievement items here */
+    /* For now, let's just give them a background color */
+    background-color: #6ce972;
+  }
+  

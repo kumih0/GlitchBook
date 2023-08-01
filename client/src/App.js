@@ -3,6 +3,8 @@ import './styles/styles.css'
 import './styles/LoginForm.css'
 import { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
+import ProfileData from './components/ProfileData/ProfileData';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 //import react and apollo dependencies
 import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
@@ -45,6 +47,8 @@ const App = () => {
                 <div className="App">
                         <Routes>
                             <Route path={"/"} element={<LoginForm />}></Route>
+                            <Route path={"/Profile"} element={<ProfilePage />}></Route>
+                            <Route path={"/PostFeed"} element={<LoginForm />}></Route>
                         </Routes>
                 </div>
         </ApolloProvider>
