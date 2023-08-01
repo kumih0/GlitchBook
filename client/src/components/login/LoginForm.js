@@ -1,6 +1,8 @@
 // Importing the 'useState', 'Link', and 'useNavigate' hooks from React.
 import React from "react";
 
+
+
     // JSX code for rendering the login and registration form.
 const LoginForm = () => {
     return (
@@ -24,7 +26,7 @@ const LoginForm = () => {
                 <input type="submit" name="login" value="Log In"></input>
 
                 {/* Button to register a new user. */}
-                <button name="register">Register</button>
+                <button name="register" link="/signup">Register</button>
             </div>
         </form>
     )
