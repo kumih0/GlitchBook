@@ -5,9 +5,35 @@
 //general badge/achievements
 const badgeData = [
     {
-
+        name: 'You did it!',
+        description: 'You broke the website',
+        image: '',
+    },
+    {
+        name: 'Lonely',
+        description: 'Have no friends',
+        image: '',
+    },
+    {
+        name: 'Friendly',
+        description: 'Add a friend',
+        image: '',
+    },
+    {
+        name: 'No way out',
+        description: 'Tried to log out',
+        image: '',
+    },
+    {
+        name: 'Supportive',
+        description: 'Liked three posts',
+        image: '',
+    },
+    {
+        name: 'Hater',
+        description: 'Disliked three posts',
+        image: '',
     }
-
 ]
 
 //badges for posts (add/update/delete)
