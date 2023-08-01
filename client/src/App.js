@@ -3,6 +3,10 @@ import './styles/styles.css'
 import './styles/LoginForm.css'
 import React, { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
+import ProfileData from './components/ProfileData/ProfileData';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+//import react and apollo dependencies
+// import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //import react router dependencies
@@ -40,22 +44,15 @@ const client = new ApolloClient({
 
 // Glitchbook app init
 const App = () => {
-    const [currentForm, setCurrentForm] = useState('login');
-
-    const toggleForm = (formName) => {
-        setCurrentForm(formName);
-    }
 
     return (
         <ApolloProvider client={client}>
                 <div className="App">
-                    {
-                        currentForm === 'login' ? <LoginForm onFormSwitch={toggleForm}/> : <Signup onFormSwitch={toggleForm}/>
-                    }
                         <Routes>
-                            <Route path={"/"} element={<LoginForm/>}></Route>
-                            <Route path={"/signup"} element={<Signup/>}></Route>
-                            <Route path={"/profile"} element={<Profile/>}></Route>
+                            <Route path={"/"} element={<LoginForm />}></Route>
+                            <Route path={"/Profile"} element={<ProfilePage />}></Route>
+                            <Route path={"/PostFeed"} element={<LoginForm />}></Route>
+                            <Route path={"/Signup"} element={<Signup />}></Route>
                         </Routes>
                 </div>
         </ApolloProvider>
