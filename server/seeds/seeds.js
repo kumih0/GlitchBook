@@ -1,67 +1,147 @@
 const db = require('../config/connections');
-const { User, Post, Comment } = require('../models');
+const { User, Post } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const postSeeds = require('./postSeeds.json');
+//importing user data
+const { randomUsername, makePassword } = require('./userData');
+//importing data helper funct
+const { getRandomArrayItem, randomDate, randomNum } = require('./data')
+//importing post data
+const posts = require('./postData');
+//importing comment data
+const comments = require('./commentData')
 
 db.once('open', async () => {
   try {
+    //delete all collections
     await Post.deleteMany({});
     await User.deleteMany({});
-    // await Comment.deleteMany({});
 
-    // Create users and store their _ids in an object for easy access
-    const userMap = {};
-    const user_ID = [];
-    for (const userData of userSeeds) {
-      const user = await User.create(userData);
-    //   userMap[user.username] = user._id;
-        user_ID.push(user._id);
+    //creating empty users array
+    const users = [];
+
+    //creating 15 users
+    for (let i = 0; i < 15; i++) {
+      const username = randomUsername();
+      const email = username + '@email.com';
+      const password = makePassword(i);
+      const friends = [];
+      const posts = [];
+      const badges = [];
+
+      users.push({ username, email, password, friends, posts, badges });
     }
 
-    // Create posts with corresponding user _ids and add comments if necessary
-    for (const postData of postSeeds) {
-        // console.log(userMap[0])
-    //   const postAuthorId = userMap[postData.username];
-    //   console.log("hello", postAuthorId);
-    //   const { postTitle, postText, username, comments, ...rest } = postData;
+    //get random user helper funct
+    const getRandomUser = (array) => {
+      return array[Math.floor(Math.random() * array.length)].username;
+    };
 
-    //   const post = await Post.create({
-    //     postTitle, // Use postTitle from the postSeeds.json
-    //     postText, // Use postText from the postSeeds.json
-    //     username, // Use username from the postSeeds.json
-    //     postAuthor: postAuthorId, // Associate the post with the user by using postAuthor field
-    //     ...rest // Include any other properties from the postSeeds.json if needed
-    //   });
-const post =await Post.create(postData);
-for (const userid of user_ID) {
+    //generate friends list for each user, map funct
+    users.map((user) => {
+      //create empty friends array
+      const friends = [];
+      //create random number of friends
+      const totalFriends = Math.floor(Math.random() * users.length);
+      //loop through total friends and push random user into friends array
+      for (let i = 0; i <= totalFriends; i++) {
+        //check the friends array and filter out any users already in the array
+        const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend.username !== user.username);
+        //call getrandomuser funct
+        const newFriend = getRandomUser(potentialFriends);
 
-    await User.findOneAndUpdate({ _id: userid }, { $addToSet: { posts: post._id } });
-}
+        friends.push(newFriend);
+      }
+      //set friends array to user.friends
+      user.friends = friends;
+    });
 
-      // If you have comments data in the postSeeds.json, add them to the post
-    //   if (comments && comments.length > 0) {
-    //     post.comments = comments.map(comment => ({
-    //       commentText: comment.commentText, // Use commentText from the postSeeds.json
-    //       username: comment.username // Use username from the postSeeds.json
-    //     }));
-    //     await post.save();
-    //   }
+    //generate posts for each user, map funct
+    users.map((user) => {
+      //create empty posts array
+      const userPosts = [];
+      //create random number of posts
+      const totalPosts = Math.floor(Math.random() * 5);
+      //loop through total posts and push random post into posts array
+      for (let i = 0; i <= totalPosts; i++) {
+        const username = user.username;
+        const createdAt = randomDate();
+        const likes = randomNum();
+        const dislikes = randomNum();
 
-      // Add the post _id to the user's posts array
-    //   await User.findOneAndUpdate(
-    //     { _id: postAuthorId },
-    //     {
-    //       $addToSet: {
-    //         posts: post._id,
-    //       },
-    //     }
-    //   );
-    }
+        userPosts.push({
+          ...getRandomArrayItem(posts),
+          username,
+          createdAt,
+          likes,
+          dislikes
+        });
+      }
+      //set posts array to user.posts
+      user.posts = userPosts;
+    });
+
+    //empty posts array
+    const allPosts = [];
+
+    //loop through users array and push each user's posts into allPosts array
+    users.forEach((user) => {
+      user.posts.forEach((post) => {
+        allPosts.push(post);
+      });
+    });
+
+    //generate comments for each post, map funct
+    allPosts.map((post) => {
+      //create empty comments array
+      const postComments = [];
+      //create random number of comments  
+      const totalComments = randomNum();
+      //grab post createdat date by matching index
+      let index = allPosts.indexOf(post);
+      const postDate = allPosts[index].createdAt;
+
+      //random date after function, comments created after post createdat
+      const randomDateAfter = (postDate) => {
+        const randomDate = new Date(postDate.getTime() + Math.random() * (Date.now() - postDate.getTime()));
+        return randomDate;
+      }
+
+      //loop through total comments and push random comment into comments array
+      for (let i = 0; i <= totalComments; i++) {
+        const commentText = getRandomArrayItem(comments);
+        const username = getRandomUser(users);
+        const createdAt = randomDateAfter(postDate);
+        const likes = randomNum();
+        const dislikes = randomNum();
+
+        postComments.push({
+          commentText,
+          username,
+          createdAt,
+          likes,
+          dislikes
+        });
+      }
+      console.log(postComments);
+      //set comments array to post.comments
+      post.comments = postComments;
+    });
+   
+    //possibly? badge data here?
+
+    //add hardcoded user data to users array
+    users.push(...userSeeds);
+    console.log(users);
+    //insert many users into db
+    await User.collection.insertMany(users);
+    //insert many posts into db
+    await Post.collection.insertMany(allPosts);
+
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
 
-  console.log('all done!');
+  console.log('all done! seeds are planted :3');
   process.exit(0);
 });

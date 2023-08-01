@@ -11,11 +11,6 @@ const postSchema = new Schema({
         trim: true
     
     },
-    // postAuthor: {
-    //     type: String,
-    //     required: false,
-    //     trim: true
-    // },
     postText: {
         type: String,
         required: true,
@@ -23,11 +18,11 @@ const postSchema = new Schema({
         maxlength: 1000,
         trim: true
     },
-    // username: {
-    //     type: String,
-    //     required: true,
-    //     trim: true
-    // },
+    username: {
+        type: String,
+        required: true,
+        trim: true
+    },
     createdAt: {
         type: Date,
         default: Date.now,
