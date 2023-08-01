@@ -1,15 +1,18 @@
 import './App.css';
 import './styles/styles.css'
-import { useState } from 'react';
+import './styles/LoginForm.css'
+import React, { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
 import ProfileData from './components/ProfileData/ProfileData';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 //import react and apollo dependencies
-import React from 'react';
+// import React from 'react';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //import react router dependencies
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Profile } from './pages/profile/Profile';
+import Signup from './components/signup/Signup';
 
 //making GraphQL endpoint
 const httpLink = createHttpLink({
@@ -41,6 +44,7 @@ const client = new ApolloClient({
 
 // Glitchbook app init
 const App = () => {
+
     return (
         <ApolloProvider client={client}>
                 <div className="App">
@@ -48,6 +52,7 @@ const App = () => {
                             <Route path={"/"} element={<LoginForm />}></Route>
                             <Route path={"/Profile"} element={<ProfilePage />}></Route>
                             <Route path={"/PostFeed"} element={<LoginForm />}></Route>
+                            <Route path={"/Signup"} element={<Signup />}></Route>
                         </Routes>
                 </div>
         </ApolloProvider>
