@@ -8,7 +8,7 @@ const http = require('http');
 const cors = require('cors');
 const { json } = require('body-parser');
 const { typeDefs, resolvers } = require('./schemas');
-
+const path = require('path');
 //importing mongoose connection
 const db = require('./config/connections');
 //importing auth middleware
