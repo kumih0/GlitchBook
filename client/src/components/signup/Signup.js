@@ -38,17 +38,34 @@ const Signup = (props) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email Address</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremailhere@yeshere.com" id="email" name="email" />
-                <label htmlFor="password">Password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" id="password" name="password" />
-                <label htmlFor="username">Username</label>
-                <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" id="username" name="username" />
-                <button type="submit">Sign Up</button>
+                <div className="inner-form">
+                    <h2>Sign Up</h2>
+
+                    {/* Input field for user to enter login. */}
+                    <div className="form-input">
+                        <label>Username:</label>
+                        <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" id="username" name="username" />
+                    </div>
+
+                    {/* Input field for user to enter login. */}
+                    <div className="form-input">
+                        <label>Email:</label>
+                        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email"  id="email" name="email" />
+                    </div>
+
+                    {/* Input field for user to enter password. */}
+                    <div className="form-input">
+                        <label>Password:</label>
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} type="password"  id="password" name="password" />
+                    </div>
+
+                    {/* Button to register a new user. */}
+                    <button name="register" type="submit">Sign Up</button>
+                    <button onClick={() => props.onFormSwitch('LoginForm')}>Already have a account? Log in here.</button>
+                </div>
             </form>
-            <button onClick={handleLoginFormClick}>Already have an account? Log in here.</button>
         </>
     )
-}
+};
 
 export default Signup;
