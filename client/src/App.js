@@ -1,9 +1,8 @@
 import './App.css';
 import './styles/styles.css'
-import './styles/LoginForm.css'
 import React, { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
-import ProfileData from './components/ProfileData/ProfileData';
+import Signup from './components/signup/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 //import react and apollo dependencies
 // import React from 'react';
@@ -11,8 +10,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 //import react router dependencies
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Profile } from './pages/profile/Profile';
-import Signup from './components/signup/Signup';
+
 
 //making GraphQL endpoint
 const httpLink = createHttpLink({
