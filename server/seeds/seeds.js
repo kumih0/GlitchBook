@@ -25,6 +25,8 @@ db.once('open', async () => {
         await User.findOneAndUpdate({ _id: userid }, { $addToSet: { posts: post._id } });
       }
     }
+
+    
   } catch (err) {
     console.error(err);
     process.exit(1);

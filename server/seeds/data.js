@@ -15,3 +15,4 @@ const randomDate = () => {
     return date;
 };
 
+module.exports = { getRandomArrayItem, randomDate };
