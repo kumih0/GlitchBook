@@ -33,7 +33,7 @@ const userSchema = new Schema({
         },
     ],
     //badges array, referencing badge model. sub doc to user
-    badges: [badgeSchema],
+    badges: [badgeSchema]
 },
     {
         toJSON: {
