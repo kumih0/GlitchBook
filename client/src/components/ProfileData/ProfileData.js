@@ -6,7 +6,7 @@ import Auth from '../../utils/auth';
 
 const ProfileData = () => {
   const token = Auth.loggedIn() ? Auth.getToken() : null;
-  const user = token ? Auth.getProfile().data.email : null;
+  const user = token ? Auth.getProfile().data : null;
   console.log(user);
   return (
     <div className="profile-data">
