@@ -30,7 +30,6 @@ db.once('open', async () => {
 
       users.push({ username, email, password, friends, posts, badges });
     }
-    console.log(users);
 
     //get random user helper funct
     const getRandomUser = (array) => {
@@ -55,7 +54,6 @@ db.once('open', async () => {
       //set friends array to user.friends
       user.friends = friends;
     });
-    console.log(users);
 
     //generate posts for each user, map funct
     users.map((user) => {
@@ -78,36 +76,72 @@ db.once('open', async () => {
           dislikes
         });
       }
-      console.log(userPosts);
       //set posts array to user.posts
       user.posts = userPosts;
     });
+
+    //empty posts array
+    const allPosts = [];
+
+    //loop through users array and push each user's posts into allPosts array
+    users.forEach((user) => {
+      user.posts.forEach((post) => {
+        allPosts.push(post);
+      });
+    });
+
+    //generate comments for each post, map funct
+    allPosts.map((post) => {
+      //create empty comments array
+      const postComments = [];
+      //create random number of comments  
+      const totalComments = randomNum();
+      //grab post createdat date by matching index
+      let index = allPosts.indexOf(post);
+      const postDate = allPosts[index].createdAt;
+
+      //random date after function, comments created after post createdat
+      const randomDateAfter = (postDate) => {
+        const randomDate = new Date(postDate.getTime() + Math.random() * (Date.now() - postDate.getTime()));
+        return randomDate;
+      }
+
+      //loop through total comments and push random comment into comments array
+      for (let i = 0; i <= totalComments; i++) {
+        const commentText = getRandomArrayItem(comments);
+        const username = getRandomUser(users);
+        const createdAt = randomDateAfter(postDate);
+        const likes = randomNum();
+        const dislikes = randomNum();
+
+        postComments.push({
+          commentText,
+          username,
+          createdAt,
+          likes,
+          dislikes
+        });
+      }
+      console.log(postComments);
+      //set comments array to post.comments
+      post.comments = postComments;
+    });
+   
+    //possibly? badge data here?
+
+    //add hardcoded user data to users array
+    users.push(...userSeeds);
     console.log(users);
-
-
-    // // Create users and store their _ids in an object for easy access
-
-    // const user_ID = [];
-    // for (const userData of userSeeds) {
-    //   const user = await User.create(userData);
-    //   user_ID.push(user._id);
-    // }
-
-    // // Create posts with corresponding user _ids and add comments if necessary
-    // for (const postData of postSeeds) {
-    //   const post = await Post.create(postData);
-    //   for (const userid of user_ID) {
-
-    //     await User.findOneAndUpdate({ _id: userid }, { $addToSet: { posts: post._id } });
-    //   }
-    // }
-
+    //insert many users into db
+    await User.collection.insertMany(users);
+    //insert many posts into db
+    await Post.collection.insertMany(allPosts);
 
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
 
-  console.log('all done!');
+  console.log('all done! seeds are planted :3');
   process.exit(0);
 });

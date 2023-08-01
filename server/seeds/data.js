@@ -15,6 +15,6 @@ const randomDate = () => {
 };
 
 //generate a random number between 0-25
-const randomNum = () => Math.floor(Math.random() * 25);
+const randomNum = () => Math.floor(Math.random() * 20);
 
 module.exports = { getRandomArrayItem, randomDate, randomNum };
