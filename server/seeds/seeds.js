@@ -1,7 +1,7 @@
 const db = require('../config/connections');
 const { User, Post } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const postSeeds = require('./postSeeds.json');
+const postSeeds = require('./postData');
 //importing data helper funct
 const { getRandomArrayItem, randomDate } = require('./data')
 //importing comment data
@@ -13,7 +13,8 @@ db.once('open', async () => {
     await Post.deleteMany({});
     await User.deleteMany({});
 
-
+    //create users
+    
 
     // // Create users and store their _ids in an object for easy access
 
