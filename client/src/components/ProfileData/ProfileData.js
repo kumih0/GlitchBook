@@ -2,8 +2,12 @@ import React from 'react';
 import './style/ProfileData.css';
 import UserScore from '../UserScore/UserScore';
 import FriendsList from '../FriendsList/FriendsList';
+import Auth from '../../utils/auth';
 
 const ProfileData = () => {
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
+  const user = token ? Auth.getProfile().data.email : null;
+  console.log(user);
   return (
     <div className="profile-data">
       <div className="profile-label">Profile</div>

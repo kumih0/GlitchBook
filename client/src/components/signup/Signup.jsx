@@ -1,19 +1,20 @@
+// Signup.js
+
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoginForm from '../login/LoginForm';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-// import './styles/LoginForm.css';
 
 const Signup = (props) => {
     const [currentForm, setCurrentForm] = useState('login');
     const [addUser, { error }] = useMutation(ADD_USER);
 
+    const navigate = useNavigate();
+
     const toggleForm = (formName) => {
         setCurrentForm(formName);
-    }
-    {
-        currentForm === 'login' ? <LoginForm onFormSwitch={toggleForm}/> : <Signup onFormSwitch={toggleForm}/>
     }
 
     const [email, setEmail] = useState('');
@@ -30,18 +31,22 @@ const Signup = (props) => {
         console.log(data);
     }
 
+    const handleLoginFormClick = () => {
+        navigate('/');
+    }
+
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label for="email">Email Address</label>
+                <label htmlFor="email">Email Address</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremailhere@yeshere.com" id="email" name="email" />
-                <label for="password">Password</label>
+                <label htmlFor="password">Password</label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="password" id="password" name="password" />
-                <label for="username">Username</label>
+                <label htmlFor="username">Username</label>
                 <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" placeholder="username" id="username" name="username" />
                 <button type="submit">Sign Up</button>
             </form>
-           <button onClick={() => props.onFormSwitch('LoginForm')}>Already have a account? Log in here.</button>
+            <button onClick={handleLoginFormClick}>Already have an account? Log in here.</button>
         </>
     )
 }
