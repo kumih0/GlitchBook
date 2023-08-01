@@ -5,13 +5,12 @@ import './styles/styles.css'
 import './styles/LoginForm.css'
 import React from 'react';
 import LoginForm from './components/login/LoginForm';
-import ProfileData from './components/ProfileData/ProfileData';
+import Signup from './components/signup/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Profile } from './pages/profile/Profile';
-import Signup from './components/signup/Signup';
+
 
 const httpLink = createHttpLink({
     uri: '/graphql',
