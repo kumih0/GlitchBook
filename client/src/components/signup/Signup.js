@@ -61,7 +61,7 @@ const Signup = (props) => {
 
                     {/* Button to register a new user. */}
                     <button name="register" type="submit">Sign Up</button>
-                    <button onClick={() => props.onFormSwitch('LoginForm')}>Already have a account? Log in here.</button>
+                    <button onClick={handleLoginFormClick}>Already have an account? Log in here.</button>
                 </div>
             </form>
         </>
