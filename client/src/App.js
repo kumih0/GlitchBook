@@ -2,7 +2,7 @@
 
 import './App.css';
 import './styles/styles.css'
-import './styles/LoginForm.css'
+import './components/login/style/LoginForm.css'
 import React from 'react';
 import LoginForm from './components/login/LoginForm';
 import Signup from './components/signup/Signup';
