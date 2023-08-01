@@ -1,5 +1,7 @@
 const db = require('../config/connections');
 const { User, Post } = require('../models');
+//importing signtoken
+const { signToken } = require('../utils/auth');
 const userSeeds = require('./userSeeds.json');
 //importing user data
 const { randomUsername, makePassword } = require('./userData');
