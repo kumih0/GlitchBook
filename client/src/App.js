@@ -1,6 +1,5 @@
 import './App.css';
 import './styles/styles.css'
-import './styles/LoginForm.css'
 import { useState } from 'react';
 import LoginForm from './components/login/LoginForm';
 import ProfileData from './components/ProfileData/ProfileData';
