@@ -2,94 +2,108 @@
 
 //These are just a start for a few achievements. I prefer using regular js files vs json, since it gives us more wiggle room to manipulate or incorporate helper functions.
 
+//general badge/achievements
 const badgeData = [
+    {
+
+    }
+
+]
+
+//badges for posts (add/update/delete)
+const postBadges = [
     {
         name: 'Thoughtful',
         description: 'Make your first post',
         image: 'relevent img link here',
     },
     {
+        name: 'Thunkful',
+        description: 'Make three posts',
+        image: '',
+    },
+    {
+        name: 'Word Vomit',
+        description: 'Make five posts',
+        image: '',
+    },
+    {
+        name: 'Editor',
+        description: 'Update a post',
+        image: '',
+    },
+    {
+        name: 'Retcon Extraordinaire',
+        description: 'Update three posts',
+        image: '',
+    },
+    {
+        name: 'Drunk with power',
+        description: 'Update five posts',
+        image: '',
+    },
+    {
+        name: 'Whoopsies',
+        description: 'Delete a post',
+        image: '',
+    },
+    {
+        name: 'This is trash',
+        description: 'Delete three posts',
+        image: '',
+    },
+    {
+        name: 'Garbage Collector',
+        description: 'Delete five posts',
+        image: '',
+    },
+];
+
+//badges for comments (add/update/delete)
+const commentBadges = [
+    {
         name: 'Reply Guy',
         description: 'Make your first comment',
         image: 'link src img here'
     },
     {
-        name: 'Thunkful',
-        description: 'Make three posts',
-        image:'',
-    },
-    {
         name: 'Conversationalist',
         description: 'Make three comments',
-        image:'',
-    },
-    {
-        name: 'Word Vomit',
-        description: 'Make five posts',
-        image:'',
+        image: '',
     },
     {
         name: 'Mass Debater',
         description: 'Make five comments',
-        image:'',
-    },
-    {
-        name: 'Editor',
-        description: 'Update a post',
-        image:'',
+        image: '',
     },
     {
         name: "That's not what I said",
         description: 'Update a comment',
-        image:'',
-    },
-    {
-        name: 'Retcon Extraordinaire',
-        description: 'Update three posts',
-        image:'',
+        image: '',
     },
     {
         name: 'Putting words in your mouth',
         description: 'Update three comments',
-        image:'',
-    },
-    {
-        name: 'Drunk with power',
-        description: 'Update five posts',
-        image:'',
+        image: '',
     },
     {
         name: 'ULTIMATE Mass Debator',
         description: 'Update five comments',
-        image:'',
-    },
-    {
-        name: 'Whoopsies',
-        description: 'Delete a post',
-        image:'',
+        image: '',
     },
     {
         name: 'Take that back',
         description: 'Delete a comment',
-        image:'',
-    },
-    {
-        name: 'This is trash',
-        description: 'Delete three posts',
-        image:'',
+        image: '',
     },
     {
         name: 'Taking out the trash',
         description: 'Delete three comments',
-        image:'',
+        image: '',
     },
     {
-        name: 'Garbage Collector',
-        description: 'Delete five posts and five comments',
-        image:'',
+        name: 'Dumpster Diver',
+        description: 'Delete five comments',
+        image: '',
     },
-    {
-        name: '',
-        description: '',
-        image:'',
-    },
+];
