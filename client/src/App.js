@@ -2,10 +2,10 @@
 
 import './App.css';
 import './styles/styles.css'
-import './components/login/style/LoginForm.css'
+import './components/LoginForm/style/LoginForm.css'
 import React from 'react';
-import LoginForm from './components/login/LoginForm';
-import Signup from './components/signup/Signup';
+import LoginForm from './components/LoginForm/LoginForm';
+import Signup from './components/Signup/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
