@@ -30,7 +30,7 @@ db.once('open', async () => {
       const user = await User.create({ username, email, password, friends, posts });
       const token = signToken(user);
       await User.collection.updateOne({ _id: user._id }, { $set: { token: token } });
-      users.push({user, token });
+      users.push({ user, token });
     }
     console.log(users);
 
@@ -49,7 +49,7 @@ db.once('open', async () => {
       const likes = randomNum();
       const dislikes = randomNum();
 
-      const post = await Post.create({...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
+      const post = await Post.create({ ...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
       allPosts.push(post);
     }
     console.log(allPosts);
@@ -58,16 +58,60 @@ db.once('open', async () => {
     allPosts.map((post) => {
       const username = post.username;
       const index = users.findIndex((user) => user.user.username === username);
-     const postID = post._id;
-     console.log(postID);
+      const postID = post._id;
+      console.log(postID);
       users[index].user.posts.push(postID);
       console.log(users[index]);
     });
 
+    //update users with posts
+    await User.collection.updateMany({}, { $set: { posts: users.posts } });
+
+    //generate random number of comments for each post
+    allPosts.map((post) => {
+      //create empty comments array
+      const postComments = [];
+      //create random number of comments
+      const totalComments = randomNum();
+      //grabbing post createdat date
+      const postDate = post.createdAt;
+      const postID = post._id;
+
+      //random date after function, comments created after post createdat
+      const randomDateAfter = () => {
+        const date = new Date(postDate);
+        const randomNumOfDays = Math.floor(Math.random() * 10);
+        date.setDate(date.getDate() + randomNumOfDays);
+        return date;
+      }
+
+      //loop through total comments and push random comment into comments array
+      for (let i = 0; i <= totalComments; i++) {
+        const commentText = getRandomArrayItem(comments);
+        const username = (getRandomUser(users)).username;
+        const createdAt = randomDateAfter(postDate);
+        const likes = randomNum();
+        const dislikes = randomNum();
+
+        postComments.push({
+          commentText,
+          username,
+          createdAt,
+          likes,
+          dislikes
+        });
+      }
+      //set comments array to post.comments
+      post.comments = postComments;
+      console.log(post)
+    });
+
+    //update posts with comments
+    await Post.collection.updateMany({}, { $set: { comments: allPosts.comments } });
 
 
 
-  
+
 
     // //generate comments for each post, map funct
     // allPosts.map((post) => {
