@@ -28,7 +28,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
 
   export const ADD_FRIEND = gql`
-  mutation Mutation($friendId: ID!) {
+  mutation addFriend($friendId: ID!) {
     addFriend(friendId: $friendId) {
       _id
       email
@@ -38,4 +38,16 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   }
   `;
   
-  
+  export const ADD_POST = gql`
+  mutation addPost($postTitle: String!, $postText: String!) {
+    addPost(postTitle: $postTitle, postText: $postText) {
+      _id
+      username
+      postTitle
+      postText
+      createdAt
+      likes
+      dislikes
+    }
+  }
+  `;
