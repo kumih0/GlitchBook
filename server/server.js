@@ -44,6 +44,9 @@ async function startApolloServer() {
         res.sendFile(path.join(__dirname, '../client/build/index.html'));
       });
     
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../client/build/index.html'));
+      });
     db.once('open', () => {
         httpServer.listen(PORT, () => {
             console.log(`API server running on port ${PORT}!`);
