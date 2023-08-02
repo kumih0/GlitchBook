@@ -135,3 +135,26 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
   }
   `;
+
+  export const LIKE_COMMENT = gql`
+  mutation likeComment($postId: ID!, $commentId: ID!) {
+    likeComment(postId: $postId, commentId: $commentId) {
+      _id
+      username
+      postTitle
+      postText
+      createdAt
+      likes
+      dislikes
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
