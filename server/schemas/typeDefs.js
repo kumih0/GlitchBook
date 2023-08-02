@@ -60,6 +60,7 @@ const typeDefs = `#graphql
         deletePost(postId: ID!): Post
         deleteComment(postId: ID!, commentId: ID!): Post
         deleteFriend(username: String!, friendId: ID!): User
+        addBadge(badgeId: ID!): User
     }
 `;
 

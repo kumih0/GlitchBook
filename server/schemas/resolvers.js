@@ -252,6 +252,19 @@ const resolvers = {
                 console.log(err);
             }
         },
+        //add badge mutation
+        addBadge: async (parent, { badgeId }, context) => {
+            try {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { badges: badgeId } },
+                    { new: true }
+                );
+                return updatedUser;
+            } catch (err) {
+                console.log(err);
+            }
+        },
     },
 };
 
