@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/NavBar/NavBar';
 import ProfileData from '../../components/ProfileData/ProfileData';
 // import FriendsList from '../../components/FriendsList/FriendsList';
-import Comment from '../../components/Comments/Comment';
+import Comment from '../../components/comments/comment';
 // import CommentField from '../../components/Comments/CommentField'
 import './style/ProfilePage.css'
 
