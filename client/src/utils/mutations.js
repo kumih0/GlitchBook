@@ -198,7 +198,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
 
   export const DELETE_POST = gql`
-  mutation Mutation($postId: ID!) {
+  mutation deletePost($postId: ID!) {
     deletePost(postId: $postId) {
       _id
       username
@@ -208,4 +208,21 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
   }
   `;
-  
+
+export const DELETE_COMMENT = gql`
+mutation Mutation($postId: ID!, $commentId: ID!) {
+  deleteComment(postId: $postId, commentId: $commentId) {
+    _id
+    username
+    postTitle
+    postText
+    createdAt
+    commentCount
+    comments {
+      _id
+      commentText
+      username
+    }
+  }
+}
+`;
