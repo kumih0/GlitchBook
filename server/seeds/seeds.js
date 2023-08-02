@@ -106,36 +106,6 @@ db.once('open', async () => {
 
       await User.collection.updateOne({ _id: user.user._id }, { $set: { friends: user.user.friends } });
       }
- 
-
-    // //insert many users into db
-    // await User.collection.insertMany(users);
-    // //insert many posts into db
-    // await Post.collection.insertMany(allPosts);
-
-    // console.log(allPosts);
-    // console.log(users);
-
-    // users.forEach((user) => {
-
-    //   //loop through random number of friends and push random user into friends array
-    //   for (let i = 0; i <= Math.floor(Math.random() * users.length); i++) {
-    //     //filtering out redundant friends
-    //     const potentialFriends = users.filter((friend) => !user.friends.includes(friend) && friend._id !== user._id);
-
-    //     //call getrandomuser funct
-    //     const newFriend = getRandomUser(potentialFriends);
-    //     user.friends.push(`_id: ${newFriend._id}`);
-    //   }
-    // });
-
-    // //update users with friends
-    // await User.collection.updateMany({}, { $set: { friends: users.friends } });
-
-    // //update users with posts
-    // await User.collection.populate('posts');
-
-
 
   } catch (err) {
     console.error(err);
