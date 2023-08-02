@@ -7,7 +7,9 @@ query allUsers {
     email
     password
     friends {
+      _id
       username
+      email
     }
     posts {
       _id
@@ -31,21 +33,32 @@ query allUsers {
   }
 }`;
 
-export const GET_USER = `#graphql
-  query Query($username: String!) {
-    user(username: $username) {
+export const GET_USER = gql`
+query getUser($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    password
+    posts {
       _id
+      postTitle
+      postText
+      likes
+      dislikes
+      createdAt
+      commentCount
+    }
+    friendCount
+    friends {
       username
       email
-      posts {
-        postText
-        postTitle
-        createdAt
-      }
+      _id
     }
-  }`;
+  }
+}`;
 
-  export const ALL_POSTS = `#graphql
+  export const ALL_POSTS = gql`
   query Query {
     posts {
       _id
