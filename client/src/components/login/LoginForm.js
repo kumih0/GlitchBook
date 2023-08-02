@@ -91,9 +91,12 @@ const LoginForm = () => {
 
         {/* Button to submit the login form. */}
         <input type="submit" name="login" value="Log In" />
-
         {/* Button to register a new user. */}
         <Link to="/signup">Register</Link>
+        
+        
+        <p>{error ? 'Incorrect credentials' : null}</p>
+
       </div>
     </form>
   );
