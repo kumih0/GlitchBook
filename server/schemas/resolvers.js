@@ -25,7 +25,11 @@ const resolvers = {
             return await User.findOne({ username }).populate('posts').populate('friends');
         },
         //get all posts query
-        posts: async (parent, { username }) => {
+        posts: async () => {
+            return await Post.find().sort({ createdAt: -1 });
+        },
+        //get all posts by user query
+        postsByUser: async (parent, { username }) => {
             const params = username ? { username } : {};
             return await Post.find(params).sort({ createdAt: -1 });
         },

@@ -80,6 +80,29 @@ query me {
   }
 }`;
 
+export const ALL_POSTS_BY_USER = gql`
+query postsByUser($username: String) {
+  postsByUser(username: $username) {
+    _id
+    postTitle
+    postText
+    username
+    createdAt
+    likes
+    dislikes
+    comments {
+      _id
+      commentText
+      username
+      createdAt
+      likes
+      dislikes
+    }
+    commentCount
+  }
+}
+`;
+
   export const ALL_POSTS = gql`
   query Query {
     posts {

@@ -40,7 +40,8 @@ const typeDefs = `#graphql
         me: User
         users: [User]
         user(username: String!): User
-        posts(username: String): [Post]
+        posts: [Post]
+        postsByUser(username: String): [Post]
         post(postId: ID!): Post
     }
 
