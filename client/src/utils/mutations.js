@@ -210,7 +210,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
 
 export const DELETE_COMMENT = gql`
-mutation Mutation($postId: ID!, $commentId: ID!) {
+mutation deleteComment($postId: ID!, $commentId: ID!) {
   deleteComment(postId: $postId, commentId: $commentId) {
     _id
     username
@@ -221,6 +221,20 @@ mutation Mutation($postId: ID!, $commentId: ID!) {
     comments {
       _id
       commentText
+      username
+    }
+  }
+}
+`;
+
+export const DELETE_FRIEND = gql`
+mutation deleteFriend($username: String!, $friendId: ID!) {
+  deleteFriend(username: $username, friendId: $friendId) {
+    _id
+    username
+    friendCount
+    friends {
+      _id
       username
     }
   }
