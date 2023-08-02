@@ -1,4 +1,4 @@
-const { AuthenticationError } = require('@apollo/server');
+// const { AuthenticationError } = require('@apollo/server');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -106,7 +106,7 @@ const resolvers = {
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { postTitle, postText },
+                    { postTitle, postText, username: context.user.username },
                     { new: true, runValidators: true }
                 );
 

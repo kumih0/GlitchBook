@@ -2,7 +2,6 @@ const db = require('../config/connections');
 const { User, Post } = require('../models');
 //importing signtoken
 const { signToken } = require('../utils/auth');
-const userSeeds = require('./userSeeds.json');
 //importing user data
 const { randomUsername, makePassword } = require('./userData');
 //importing data helper funct
@@ -32,14 +31,29 @@ db.once('open', async () => {
 
       users.push({ username, email, password, friends, posts, badges });
     }
+    console.log(users);
 
     //get random user helper funct
     const getRandomUser = (array) => {
-      return array[Math.floor(Math.random() * array.length)].username;
+      return array[Math.floor(Math.random() * array.length)];
     };
 
-    //
 
+    // users.forEach((user) => {
+    //   //loop through random number of friends and push random user into friends array
+    //   for (let i = 0; i <= Math.floor(Math.random() * users.length); i++) {
+    //    //filtering out redundant friends
+    //    const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend._id !== user._id);
+    //    console.log(potentialFriends);
+
+    //     //call getrandomuser funct
+    //     const newFriend = getRandomUser(potentialFriends);
+    //     console.log(newFriend);
+    //     friends.push(newFriend);
+    //   }
+    //   //set friends array to user.friends
+    //   user.friends = friends;
+    // });
 
     //empty posts array
     const allPosts = [];
@@ -53,8 +67,6 @@ db.once('open', async () => {
 
       allPosts.push({ ...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
     }
-
-
     //generate comments for each post, map funct
     allPosts.map((post) => {
       //create empty comments array
@@ -74,7 +86,7 @@ db.once('open', async () => {
       //loop through total comments and push random comment into comments array
       for (let i = 0; i <= totalComments; i++) {
         const commentText = getRandomArrayItem(comments);
-        const username = getRandomUser(users);
+        const username = getRandomUser(users).username;
         const createdAt = randomDateAfter(postDate);
         const likes = randomNum();
         const dislikes = randomNum();
@@ -91,16 +103,35 @@ db.once('open', async () => {
       //set comments array to post.comments
       post.comments = postComments;
     });
-   
-    //possibly? badge data here?
-
-    //add hardcoded user data to users array
-    users.push(...userSeeds);
-    console.log(users);
     //insert many users into db
     await User.collection.insertMany(users);
     //insert many posts into db
     await Post.collection.insertMany(allPosts);
+
+    console.log(allPosts);
+    console.log(users);
+
+    users.forEach((user) => {
+      //loop through random number of friends and push random user into friends array
+      for (let i = 0; i <= Math.floor(Math.random() * users.length); i++) {
+        //filtering out redundant friends
+        const potentialFriends = users.filter((friend) => !user.friends.includes(friend) && friend._id !== user._id);
+
+        //call getrandomuser funct
+        const newFriend = getRandomUser(potentialFriends);
+        user.friends.push(`_id: ${newFriend._id}`);
+      }
+    });
+
+    await User.collection.bulkWrite(users.map((user) => {
+      return {
+        updateOne: {
+          filter: { _id: user._id },
+          update: { $set: { friends: user.friends } },
+          upsert: true
+        }
+      }
+    }));
 
   } catch (err) {
     console.error(err);
