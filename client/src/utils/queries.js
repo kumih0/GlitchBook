@@ -104,14 +104,26 @@ query postsByUser($username: String) {
 `;
 
   export const ALL_POSTS = gql`
-  query Query {
+  query allPosts {
     posts {
       _id
-      postText
       postTitle
+      postText
+      username
+      createdAt
       likes
       dislikes
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+      commentCount
     }
-  }`;
+  }
+  `;
   
   
