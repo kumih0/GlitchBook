@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const dateFormat = require('../utils/dateFormat');
 //importing commentschema as sub-document of post
 const commentSchema = require('./Comment');
 
@@ -9,7 +10,6 @@ const postSchema = new Schema({
         minlength: 1,
         maxlength: 280,
         trim: true
-    
     },
     postText: {
         type: String,

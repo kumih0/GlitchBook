@@ -1,4 +1,4 @@
-// const { AuthenticationError } = require('@apollo/server');
+const { GraphQLError } = require('graphql');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -10,7 +10,11 @@ const resolvers = {
                 return await User.findOne({ _id: context.user._id }).populate('posts').populate('friends');
             }
 
-            throw new AuthenticationError('Not logged in');
+           throw new GraphQLError('Not logged in', {
+            extensions: {
+                code: 'UNAUTHENTICATED',
+            },
+           });
         },
         //get all users query
         users: async () => {
@@ -21,13 +25,17 @@ const resolvers = {
             return await User.findOne({ username }).populate('posts').populate('friends');
         },
         //get all posts query
-        posts: async (parent, { username }) => {
+        posts: async () => {
+            return await Post.find().sort({ createdAt: -1 });
+        },
+        //get all posts by user query
+        postsByUser: async (parent, { username }) => {
             const params = username ? { username } : {};
             return await Post.find(params).sort({ createdAt: -1 });
         },
         //get post by id query
         post: async (parent, { postId }) => {
-            return await Post.find({ _id: postId });
+            return await Post.findOne({ _id: postId });
         },
     },
     Mutation: {
@@ -43,22 +51,28 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                // throw new AuthenticationError('No user found with this email address');
-                console.log('No user found with this email address');
+                throw new GraphQLError('No user found with this email address', {
+                    extensions: {
+                        code: 'UNAUTHENTICATED',
+                        },
+                    });
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                // throw new AuthenticationError('Incorrect credentials');
-                console.log('Incorrect credentials');
+                throw new GraphQLError('Incorrect credentials', {
+                    extensions: {
+                        code: 'UNAUTHENTICATED',
+                        },
+                });
             }
 
             const token = signToken(user);
             return { token, user };
         },
         //add post mutation
-        addPost: async (parent, { postText }, context) => {
+        addPost: async (parent, { postTitle, postText }, context) => {
             if (context.user) {
                 const post = await Post.create({
                     postTitle,
@@ -73,7 +87,11 @@ const resolvers = {
 
                 return post;
             }
-            throw new AuthenticationError('You need to be logged in!');
+            throw new GraphQLError('Not logged in', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+               });
         },
         //add comment mutation
         addComment: async (parent, { postId, commentText }, context) => {
@@ -87,7 +105,11 @@ const resolvers = {
                 return updatedPost;
             }
 
-            throw new AuthenticationError('You need to be logged in!');
+            throw new GraphQLError('Not logged in', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+               });
         },
         //add friend mutation
         addFriend: async (parent, { friendId }, context) => {
@@ -104,11 +126,11 @@ const resolvers = {
             }
         },
         //update post mutation
-        updatePost: async (parent, { postId, postTitle, postText }, context) => {
+        updatePost: async (parent, { postId, postTitle, postText }, { username }) => {
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { postTitle, postText },
+                    { postTitle, postText, username: username },
                     { new: true, runValidators: true }
                 );
 
@@ -118,7 +140,7 @@ const resolvers = {
             }
         },
         //update comment mutation
-        updateComment: async (parent, { postId, commentId, commentText }, context) => {
+        updateComment: async (parent, { postId, commentId, commentText }, context) => {//context.user.username?
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
@@ -188,12 +210,12 @@ const resolvers = {
             }
         },
         //delete post mutation
-        deletePost: async (parent, { postId }, context) => {
+        deletePost: async (parent, { postId, postUsername }, context) => {
             try {
-                const deletedPost = await Post.findOneAndDelete({ _id: postId });
+                const deletedPost = await Post.findByIdAndDelete( postId );
 
                 await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: postUsername },
                     { $pull: { posts: postId } }
                 );
 
@@ -210,21 +232,34 @@ const resolvers = {
                     { $pull: { comments: { _id: commentId } } },
                     { new: true }
                 );
-
+                    console.log(updatedPost);
                 return updatedPost;
             } catch (err) {
                 console.log(err);
             }
         },
         //remove friend mutation
-        deleteFriend: async (parent, { friendId }, context) => {
+        deleteFriend: async (parent, { username, friendId }, context) => {
             try {
                 const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: username },
                     { $pull: { friends: friendId } },
                     { new: true }
                 ).populate('friends');
 
+                return updatedUser;
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        //add badge mutation
+        addBadge: async (parent, { badgeId }, context) => {
+            try {
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { badges: badgeId } },
+                    { new: true }
+                );
                 return updatedUser;
             } catch (err) {
                 console.log(err);

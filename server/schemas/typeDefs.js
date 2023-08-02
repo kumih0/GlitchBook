@@ -1,5 +1,3 @@
-const { gql } = require('@apollo/server');
-
 //creating typeDefs
 const typeDefs = `#graphql
     type User {
@@ -42,7 +40,8 @@ const typeDefs = `#graphql
         me: User
         users: [User]
         user(username: String!): User
-        posts(username: String): [Post]
+        posts: [Post]
+        postsByUser(username: String): [Post]
         post(postId: ID!): Post
     }
 
@@ -60,7 +59,8 @@ const typeDefs = `#graphql
         dislikeComment(postId: ID!, commentId: ID!): Post
         deletePost(postId: ID!): Post
         deleteComment(postId: ID!, commentId: ID!): Post
-        deleteFriend(friendId: ID!): User
+        deleteFriend(username: String!, friendId: ID!): User
+        addBadge(badgeId: ID!): User
     }
 `;
 

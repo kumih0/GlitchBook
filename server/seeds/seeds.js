@@ -1,6 +1,7 @@
 const db = require('../config/connections');
 const { User, Post } = require('../models');
-const userSeeds = require('./userSeeds.json');
+//importing signtoken
+const { signToken } = require('../utils/auth');
 //importing user data
 const { randomUsername, makePassword } = require('./userData');
 //importing data helper funct
@@ -18,7 +19,6 @@ db.once('open', async () => {
 
     //creating empty users array
     const users = [];
-
     //creating 15 users
     for (let i = 0; i < 15; i++) {
       const username = randomUsername();
@@ -26,91 +26,53 @@ db.once('open', async () => {
       const password = makePassword(i);
       const friends = [];
       const posts = [];
-      const badges = [];
 
-      users.push({ username, email, password, friends, posts, badges });
+      const user = await User.create({ username, email, password, friends, posts });
+      const token = signToken(user);
+      await User.collection.updateOne({ _id: user._id }, { $set: { token: token } });
+      users.push({ user, token });
     }
+    console.log(users);
 
     //get random user helper funct
     const getRandomUser = (array) => {
-      return array[Math.floor(Math.random() * array.length)].username;
+      return array[Math.floor(Math.random() * array.length)].user.username;
     };
-
-    //generate friends list for each user, map funct
-    users.map((user) => {
-      //create empty friends array
-      const friends = [];
-      //create random number of friends
-      const totalFriends = Math.floor(Math.random() * users.length);
-      //loop through total friends and push random user into friends array
-      for (let i = 0; i <= totalFriends; i++) {
-        //check the friends array and filter out any users already in the array
-        const potentialFriends = users.filter((friend) => !friends.includes(friend) && friend.username !== user.username);
-        //call getrandomuser funct
-        const newFriend = getRandomUser(potentialFriends);
-
-        friends.push(newFriend);
-      }
-      //set friends array to user.friends
-      user.friends = friends;
-    });
-
-    //generate posts for each user, map funct
-    users.map((user) => {
-      //create empty posts array
-      const userPosts = [];
-      //create random number of posts
-      const totalPosts = Math.floor(Math.random() * 5);
-      //loop through total posts and push random post into posts array
-      for (let i = 0; i <= totalPosts; i++) {
-        const username = user.username;
-        const createdAt = randomDate();
-        const likes = randomNum();
-        const dislikes = randomNum();
-
-        userPosts.push({
-          ...getRandomArrayItem(posts),
-          username,
-          createdAt,
-          likes,
-          dislikes
-        });
-      }
-      //set posts array to user.posts
-      user.posts = userPosts;
-    });
 
     //empty posts array
     const allPosts = [];
 
-    //loop through users array and push each user's posts into allPosts array
-    users.forEach((user) => {
-      user.posts.forEach((post) => {
-        allPosts.push(post);
-      });
-    });
+    //generating 20 posts
+    for (let i = 0; i < 20; i++) {
+      const username = getRandomUser(users);
+      const createdAt = randomDate();
+      const likes = randomNum();
+      const dislikes = randomNum();
 
-    //generate comments for each post, map funct
-    allPosts.map((post) => {
-      //create empty comments array
+      const post = await Post.create({ ...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
+      allPosts.push(post);
+    }
+    //updating users with post_ids for populate funct
+    for (const post of allPosts) {
+      const postID = post._id;
+      console.log(postID);
+      const user = users.find((user) => user.user.username === post.username);
+
+      user.user.posts.push(postID);
+      console.log(user.user);
+      const updatedUser = await User.collection.updateOne({ _id: user.user._id }, { $set: { posts: user.user.posts } });
+      console.log(updatedUser);
+    }
+
+    for (const post of allPosts) {
       const postComments = [];
-      //create random number of comments  
+      //create random number of comments
       const totalComments = randomNum();
-      //grab post createdat date by matching index
-      let index = allPosts.indexOf(post);
-      const postDate = allPosts[index].createdAt;
-
-      //random date after function, comments created after post createdat
-      const randomDateAfter = (postDate) => {
-        const randomDate = new Date(postDate.getTime() + Math.random() * (Date.now() - postDate.getTime()));
-        return randomDate;
-      }
-
       //loop through total comments and push random comment into comments array
       for (let i = 0; i <= totalComments; i++) {
         const commentText = getRandomArrayItem(comments);
         const username = getRandomUser(users);
-        const createdAt = randomDateAfter(postDate);
+        const createdAt = randomDate();
         const likes = randomNum();
         const dislikes = randomNum();
 
@@ -122,20 +84,28 @@ db.once('open', async () => {
           dislikes
         });
       }
-      console.log(postComments);
       //set comments array to post.comments
       post.comments = postComments;
-    });
-   
-    //possibly? badge data here?
+      console.log(postComments);
+      await Post.collection.updateOne({ _id: post._id }, { $set: { comments: post.comments } });
+    }
 
-    //add hardcoded user data to users array
-    // users.push(...userSeeds);
-    // console.log(users);
-    //insert many users into db
-    await User.collection.insertMany(users);
-    //insert many posts into db
-    await Post.collection.insertMany(allPosts);
+    for (const user of users) {
+      const friends = [];
+      //create random number of friends
+      const totalFriends = randomNum();
+      //loop through total friends and push random user into friends array
+      for (let i = 0; i <= totalFriends; i++) {
+        const newFriend = (getRandomArrayItem(users)).user._id;
+        console.log(newFriend);
+        friends.push(newFriend);
+      }
+      //set friends array to user.friends
+      user.user.friends = friends;
+      console.log(user.user);
+
+      await User.collection.updateOne({ _id: user.user._id }, { $set: { friends: user.user.friends } });
+      }
 
   } catch (err) {
     console.error(err);

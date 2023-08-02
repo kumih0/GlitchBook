@@ -1,42 +1,150 @@
-export const ALL_USERS = `#graphql
-query Query {
-    users {
+const { gql } = require('@apollo/client');
+export const ALL_USERS = gql`
+query allUsers {
+  users {
+    _id
+    username
+    email
+    friends {
       _id
       username
       email
-      password
-      posts {
-        _id
-        createdAt
-        postText
-        postTitle
-      }
     }
-  }`;
-
-export const GET_USER = `#graphql
-  query Query($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-      posts {
-        postText
-        postTitle
-        createdAt
-      }
-    }
-  }`;
-
-  export const ALL_POSTS = `#graphql
-  query Query {
     posts {
       _id
-      postText
       postTitle
+      postText
+      createdAt
+      likes
+      dislikes
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+      commentCount
+    }
+    friendCount
+  }
+}`;
+
+export const GET_USER = gql`
+query getUser($username: String!) {
+  user(username: $username) {
+    _id
+    username
+    email
+    posts {
+      _id
+      postTitle
+      postText
+      likes
+      dislikes
+      createdAt
+      commentCount
+    }
+    friendCount
+    friends {
+      username
+      email
+      _id
+    }
+  }
+}`;
+
+export const GET_ME = gql`
+query me {
+  me {
+    _id
+    email
+    username
+    friendCount
+    posts {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      commentCount
+    }
+    friends {
+      _id
+      username
+      email
+    }
+  }
+}`;
+
+export const ALL_POSTS_BY_USER = gql`
+query postsByUser($username: String) {
+  postsByUser(username: $username) {
+    _id
+    postTitle
+    postText
+    username
+    createdAt
+    likes
+    dislikes
+    comments {
+      _id
+      commentText
+      username
+      createdAt
       likes
       dislikes
     }
-  }`;
+    commentCount
+  }
+}
+`;
+
+  export const ALL_POSTS = gql`
+  query allPosts {
+    posts {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+      commentCount
+    }
+  }
+  `;
   
-  
+  export const GET_ONE_POST = gql`
+  query getPost($postId: ID!) {
+    post(postId: $postId) {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
