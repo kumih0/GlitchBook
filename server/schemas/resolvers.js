@@ -210,12 +210,12 @@ const resolvers = {
             }
         },
         //delete post mutation
-        deletePost: async (parent, { postId }, context) => {
+        deletePost: async (parent, { postId, postUsername }, context) => {
             try {
-                const deletedPost = await Post.findOneAndDelete({ _id: postId });
+                const deletedPost = await Post.findByIdAndDelete( postId );
 
                 await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: postUsername },
                     { $pull: { posts: postId } }
                 );
 
@@ -232,17 +232,17 @@ const resolvers = {
                     { $pull: { comments: { _id: commentId } } },
                     { new: true }
                 );
-
+                    console.log(updatedPost);
                 return updatedPost;
             } catch (err) {
                 console.log(err);
             }
         },
         //remove friend mutation
-        deleteFriend: async (parent, { friendId }, context) => {
+        deleteFriend: async (parent, { username, friendId }, context) => {
             try {
                 const updatedUser = await User.findOneAndUpdate(
-                    { _id: context.user._id },
+                    { username: username },
                     { $pull: { friends: friendId } },
                     { new: true }
                 ).populate('friends');

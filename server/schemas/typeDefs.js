@@ -59,7 +59,7 @@ const typeDefs = `#graphql
         dislikeComment(postId: ID!, commentId: ID!): Post
         deletePost(postId: ID!): Post
         deleteComment(postId: ID!, commentId: ID!): Post
-        deleteFriend(friendId: ID!): User
+        deleteFriend(username: String!, friendId: ID!): User
     }
 `;
 
