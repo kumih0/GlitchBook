@@ -1,19 +1,22 @@
 import React from 'react';
 import Navbar from '../../components/NavBar/NavBar';
 import ProfileData from '../../components/ProfileData/ProfileData';
-// import FriendsList from '../../components/FriendsList/FriendsList';
 import Comment from '../../components/Comments/Comment';
-// import CommentField from '../../components/Comments/CommentField'
-import './style/ProfilePage.css'
-
+import './style/ProfilePage.css';
 
 const ProfilePage = () => {
   return (
-    <>
-    <Navbar></Navbar>
-    <ProfileData></ProfileData>
-    <Comment></Comment>
-    </>
+    <div className="profile-page-container">
+      <Navbar />
+      <div className="content-container">
+        <div className="profile-data-container">
+          <ProfileData />
+        </div>
+        <div className="comment-container">
+          <Comment />
+        </div>
+      </div>
+    </div>
   );
 };
 

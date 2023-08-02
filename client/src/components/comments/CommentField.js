@@ -7,7 +7,7 @@ import './style/Comment.css'
         <div className={"search-box Comment-box"}>
             {/* Textarea to enter the Comment text */}
             <textarea
-                maxLength={100} // TODO: Make max length a constant
+                maxLength={200} // TODO: Make max length a constant
             ></textarea>
             {/* Button to send the Comment */}
             <button>Comment</button>
