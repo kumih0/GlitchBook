@@ -35,7 +35,7 @@ const resolvers = {
         },
         //get post by id query
         post: async (parent, { postId }) => {
-            return await Post.find({ _id: postId });
+            return await Post.findOne({ _id: postId });
         },
     },
     Mutation: {

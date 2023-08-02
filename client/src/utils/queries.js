@@ -126,4 +126,25 @@ query postsByUser($username: String) {
   }
   `;
   
-  
+  export const GET_ONE_POST = gql`
+  query getPost($postId: ID!) {
+    post(postId: $postId) {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
