@@ -24,7 +24,12 @@ const userSchema = new Schema({
         minlength: 5,
     },
     //creating friends array, self-reference
-    friends: [this],
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        }
+    ],
     //posts array, referencing post model
     posts: [
         {
@@ -66,6 +71,11 @@ userSchema.methods.isCorrectPassword = async function (password) {
 //creating virtual to count friends
 userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
+});
+
+//creating virtual to count total posts
+userSchema.virtual('postCount').get(function () {
+    return this.posts.length;
 });
 
 //creating virtual to count total badges
