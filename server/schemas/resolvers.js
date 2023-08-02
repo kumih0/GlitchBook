@@ -140,7 +140,7 @@ const resolvers = {
             }
         },
         //update comment mutation
-        updateComment: async (parent, { postId, commentId, commentText }, context) => {
+        updateComment: async (parent, { postId, commentId, commentText }, context) => {//context.user.username?
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },

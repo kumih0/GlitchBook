@@ -97,4 +97,26 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
   }
   `;
-  
+
+  export const UPDATE_COMMENT = gql`
+  mutation updateComment($postId: ID!, $commentId: ID!, $commentText: String!) {
+    updateComment(postId: $postId, commentId: $commentId, commentText: $commentText) {
+      _id
+      postTitle
+      postText
+      username
+      likes
+      dislikes
+      createdAt
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
