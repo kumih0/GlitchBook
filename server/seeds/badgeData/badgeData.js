@@ -7,32 +7,32 @@ const badgeData = [
     {
         name: 'You did it!',
         description: 'You broke the website',
-        image: '',
+        // image: '',
     },
     {
         name: 'Lonely',
         description: 'Have no friends',
-        image: '',
+        // image: '',
     },
     {
         name: 'Friendly',
         description: 'Add a friend',
-        image: '',
+        // image: '',
     },
     {
         name: 'No way out',
         description: 'Tried to log out',
-        image: '',
+        // image: '',
     },
     {
         name: 'Supportive',
         description: 'Liked three posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Hater',
         description: 'Disliked three posts',
-        image: '',
+        // image: '',
     }
 ]
 
@@ -41,47 +41,47 @@ const postBadges = [
     {
         name: 'Thoughtful',
         description: 'Make your first post',
-        image: 'relevent img link here',
+        // image: 'relevent img link here',
     },
     {
         name: 'Thunkful',
         description: 'Make three posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Word Vomit',
         description: 'Make five posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Editor',
         description: 'Update a post',
-        image: '',
+        // image: '',
     },
     {
         name: 'Retcon Extraordinaire',
         description: 'Update three posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Drunk with power',
         description: 'Update five posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Whoopsies',
         description: 'Delete a post',
-        image: '',
+        // image: '',
     },
     {
         name: 'This is trash',
         description: 'Delete three posts',
-        image: '',
+        // image: '',
     },
     {
         name: 'Garbage Collector',
         description: 'Delete five posts',
-        image: '',
+        // image: '',
     },
 ];
 
@@ -90,47 +90,47 @@ const commentBadges = [
     {
         name: 'Reply Guy',
         description: 'Make your first comment',
-        image: 'link src img here'
+        // image: 'link src img here'
     },
     {
         name: 'Conversationalist',
         description: 'Make three comments',
-        image: '',
+        // image: '',
     },
     {
         name: 'Mass Debator',
         description: 'Make five comments',
-        image: '',
+        // image: '',
     },
     {
         name: "That's not what I said",
         description: 'Update a comment',
-        image: '',
+        // image: '',
     },
     {
         name: 'Putting words in your mouth',
         description: 'Update three comments',
-        image: '',
+        // image: '',
     },
     {
         name: 'ULTIMATE Mass Debator',
         description: 'Update five comments',
-        image: '',
+        // image: '',
     },
     {
         name: 'Take that back',
         description: 'Delete a comment',
-        image: '',
+        // image: '',
     },
     {
         name: 'Taking out the trash',
         description: 'Delete three comments',
-        image: '',
+        // image: '',
     },
     {
         name: 'Dumpster Diver',
         description: 'Delete five comments',
-        image: '',
+        // image: '',
     },
 ];
 //wtf is this

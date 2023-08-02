@@ -2,8 +2,6 @@
 const { Schema, model } = require('mongoose');
 //importing bcrypt for password hashing
 const bcrypt = require('bcrypt');
-//importing badgeschema as sub-document of user
-const badgeSchema = require('./Badges');
 
 //creating user schema
 const userSchema = new Schema({
@@ -35,7 +33,12 @@ const userSchema = new Schema({
         },
     ],
     //badges array, referencing badge model. sub doc to user
-    badges: [badgeSchema],
+    badges: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Badges'
+        }
+    ],
 },
     {
         toJSON: {

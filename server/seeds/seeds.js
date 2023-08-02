@@ -1,5 +1,6 @@
 const db = require('../config/connections');
 const { User, Post } = require('../models');
+const { Badges } = require('../models/Badges');
 //importing signtoken
 const { signToken } = require('../utils/auth');
 //importing user data
@@ -10,12 +11,17 @@ const { getRandomArrayItem, randomDate, randomNum } = require('./data')
 const posts = require('./postData');
 //importing comment data
 const comments = require('./commentData')
+//importing badge data
+const allBadges = require('./badgeData/badgeData');
 
 db.once('open', async () => {
   try {
     //delete all collections
     await Post.deleteMany({});
     await User.deleteMany({});
+
+    //create badges
+    const badges = await Badges.insertMany(allBadges);
 
     //creating empty users array
     const users = [];
