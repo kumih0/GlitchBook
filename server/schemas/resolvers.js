@@ -10,7 +10,7 @@ const resolvers = {
                 return await User.findOne({ _id: context.user._id }).populate('posts').populate('friends');
             }
 
-            throw new AuthenticationError('Not logged in');
+            // throw new AuthenticationError('Not logged in');
         },
         //get all users query
         users: async () => {
