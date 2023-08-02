@@ -52,24 +52,18 @@ db.once('open', async () => {
       const post = await Post.create({ ...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
       allPosts.push(post);
     }
-
-    //find user by username and push post into posts array
-    allPosts.map((post) => {
-      const username = post.username;
-      const index = users.findIndex((user) => user.user.username === username);
+    //updating users with post_ids for populate funct
+    for (const post of allPosts) {
       const postID = post._id;
       console.log(postID);
-      users[index].user.posts.push(postID);
-      console.log(users[index]);
+      const user = users.find((user) => user.user.username === post.username);
 
-      //update users with posts
-      User.collection.updateOne({ _id: users[index].user._id }, { $set: { posts: users[index].user.posts } });
-
-      User.collection.save(users[index].user);
-    });
-    console.log(users);
-    // //update users with posts
-    // await User.collection.updateMany({}, { $set: { posts: users.posts } });
+      user.user.posts.push(postID);
+      console.log(user.user);
+      const updatedUser = await User.collection.updateOne({ _id: user.user._id }, { $set: { posts: user.user.posts } });
+      console.log(updatedUser);
+    }
+      
 
     // //generate random number of comments for each post
     // allPosts.map((post) => {
