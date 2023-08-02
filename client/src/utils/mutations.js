@@ -197,3 +197,15 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   }
   `;
 
+  export const DELETE_POST = gql`
+  mutation Mutation($postId: ID!) {
+    deletePost(postId: $postId) {
+      _id
+      username
+      postTitle
+      postText
+      createdAt
+    }
+  }
+  `;
+  
