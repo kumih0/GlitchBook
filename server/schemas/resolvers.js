@@ -1,4 +1,4 @@
-// const { AuthenticationError } = require('@apollo/server');
+const { GraphQLError } = require('graphql');
 const { User, Post } = require('../models');
 const { signToken } = require('../utils/auth');
 
@@ -10,7 +10,11 @@ const resolvers = {
                 return await User.findOne({ _id: context.user._id }).populate('posts').populate('friends');
             }
 
-            // throw new AuthenticationError('Not logged in');
+           throw new GraphQLError('Not logged in', {
+            extensions: {
+                code: 'UNAUTHENTICATED',
+            },
+           });
         },
         //get all users query
         users: async () => {
@@ -43,13 +47,21 @@ const resolvers = {
             const user = await User.findOne({ email });
 
             if (!user) {
-                throw new AuthenticationError('No user found with this email address');
+                throw new GraphQLError('No user found with this email address', {
+                    extensions: {
+                        code: 'UNAUTHENTICATED',
+                        },
+                    });
             }
 
             const correctPw = await user.isCorrectPassword(password);
 
             if (!correctPw) {
-                throw new AuthenticationError('Incorrect credentials');
+                throw new GraphQLError('Incorrect credentials', {
+                    extensions: {
+                        code: 'UNAUTHENTICATED',
+                        },
+                });
             }
 
             const token = signToken(user);
@@ -71,7 +83,11 @@ const resolvers = {
 
                 return post;
             }
-            throw new AuthenticationError('You need to be logged in!');
+            throw new GraphQLError('Not logged in', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+               });
         },
         //add comment mutation
         addComment: async (parent, { postId, commentText }, context) => {
@@ -85,7 +101,11 @@ const resolvers = {
                 return updatedPost;
             }
 
-            throw new AuthenticationError('You need to be logged in!');
+            throw new GraphQLError('Not logged in', {
+                extensions: {
+                    code: 'UNAUTHENTICATED',
+                },
+               });
         },
         //add friend mutation
         addFriend: async (parent, { friendId }, context) => {
