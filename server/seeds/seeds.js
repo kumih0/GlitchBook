@@ -1,6 +1,6 @@
 const db = require('../config/connections');
 const { User, Post } = require('../models');
-const { Badges } = require('../models/Badges');
+const  Badges  = require('../models/Badges.js');
 //importing signtoken
 const { signToken } = require('../utils/auth');
 //importing user data
@@ -22,6 +22,7 @@ db.once('open', async () => {
 
     //create badges
     const badges = await Badges.insertMany(allBadges);
+    console.log(badges);
 
     //creating empty users array
     const users = [];

@@ -12,11 +12,6 @@ const badgeSchema = new Schema({
         required: true,
         trim: true
     },
-    // image: {
-    //     type: String,
-    //     required: true,
-    //     trim: true
-    // },
     createdAt: {
         type: Date,
         default: Date.now,
