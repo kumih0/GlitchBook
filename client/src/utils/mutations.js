@@ -240,7 +240,7 @@ mutation deleteFriend($username: String!, $friendId: ID!) {
   }
 }
 `;
-
+//userid???
 export const ADD_BADGE = gql`
 mutation addBadge($badgeId: ID!) {
   addBadge(badgeId: $badgeId) {
