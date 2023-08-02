@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
 const badgeSchema = new Schema({
@@ -9,11 +9,6 @@ const badgeSchema = new Schema({
     },
     description: {
         type:String,
-        required: true,
-        trim: true
-    },
-    image: {
-        type: String,
         required: true,
         trim: true
     },
@@ -31,4 +26,7 @@ const badgeSchema = new Schema({
     }
 });
 
-module.exports = badgeSchema;
+//create badges model
+const Badges = model('Badges', badgeSchema);
+
+module.exports = Badges;
