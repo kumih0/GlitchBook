@@ -137,7 +137,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
   
   export const DISLIKE_POST = gql`
-  mutation Mutation($postId: ID!) {
+  mutation dislikePost($postId: ID!) {
     dislikePost(postId: $postId) {
       _id
       username
@@ -154,6 +154,29 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   export const LIKE_COMMENT = gql`
   mutation likeComment($postId: ID!, $commentId: ID!) {
     likeComment(postId: $postId, commentId: $commentId) {
+      _id
+      username
+      postTitle
+      postText
+      createdAt
+      likes
+      dislikes
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
+
+  export const DISLIKE_COMMENT = gql`
+  mutation dislikeComment($postId: ID!, $commentId: ID!) {
+    dislikeComment(postId: $postId, commentId: $commentId) {
       _id
       username
       postTitle
