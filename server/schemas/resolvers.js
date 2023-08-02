@@ -72,7 +72,7 @@ const resolvers = {
             return { token, user };
         },
         //add post mutation
-        addPost: async (parent, { postText }, context) => {
+        addPost: async (parent, { postTitle, postText }, context) => {
             if (context.user) {
                 const post = await Post.create({
                     postTitle,
