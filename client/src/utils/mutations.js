@@ -26,3 +26,16 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
   }
   `;
+
+  export const ADD_FRIEND = gql`
+  mutation Mutation($friendId: ID!) {
+    addFriend(friendId: $friendId) {
+      _id
+      email
+      username
+      friendCount
+    }
+  }
+  `;
+  
+  
