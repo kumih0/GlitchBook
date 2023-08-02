@@ -89,44 +89,24 @@ db.once('open', async () => {
       console.log(postComments);
       await Post.collection.updateOne({ _id: post._id }, { $set: { comments: post.comments } });
     }
-    // //generate random number of comments for each post
-    // allPosts.map((post) => {
-    //   //create empty comments array
-    //   const postComments = [];
-    //   //create random number of comments
-    //   const totalComments = randomNum();
-    //   //grabbing post createdat date
-    //   const postDate = post.createdAt;
-    //   const postID = post._id;
 
-    //   //loop through total comments and push random comment into comments array
-    //   for (let i = 0; i <= totalComments; i++) {
-    //     const commentText = getRandomArrayItem(comments);
-    //     const username = getRandomUser(users);
-    //     const createdAt = randomDate();
-    //     const likes = randomNum();
-    //     const dislikes = randomNum();
+    for (const user of users) {
+      const friends = [];
+      //create random number of friends
+      const totalFriends = randomNum();
+      //loop through total friends and push random user into friends array
+      for (let i = 0; i <= totalFriends; i++) {
+        const newFriend = (getRandomArrayItem(users)).user._id;
+        console.log(newFriend);
+        friends.push(newFriend);
+      }
+      //set friends array to user.friends
+      user.user.friends = friends;
+      console.log(user.user);
 
-    //     postComments.push({
-    //       commentText,
-    //       username,
-    //       createdAt,
-    //       likes,
-    //       dislikes
-    //     });
-    //   }
-    //   //set comments array to post.comments
-    //   post.comments = postComments;
-    //   console.log(postComments);
-    //   Post.collection.updateOne({ _id: postID }, { $set: { comments: post.comments } });
-    // });
-
-    // //update posts with comments
-    // await Post.collection.updateMany({}, { $set: { comments: allPosts.comments } });
-
-
-
-
+      await User.collection.updateOne({ _id: user.user._id }, { $set: { friends: user.user.friends } });
+      }
+ 
 
     // //insert many users into db
     // await User.collection.insertMany(users);
