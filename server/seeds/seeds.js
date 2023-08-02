@@ -107,6 +107,7 @@ db.once('open', async () => {
       await User.collection.updateOne({ _id: user.user._id }, { $set: { friends: user.user.friends } });
       }
 
+
   } catch (err) {
     console.error(err);
     process.exit(1);
