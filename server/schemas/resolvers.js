@@ -126,11 +126,11 @@ const resolvers = {
             }
         },
         //update post mutation
-        updatePost: async (parent, { postId, postTitle, postText }, context) => {
+        updatePost: async (parent, { postId, postTitle, postText }, { username }) => {
             try {
                 const updatedPost = await Post.findOneAndUpdate(
                     { _id: postId },
-                    { postTitle, postText, username: context.user.username },
+                    { postTitle, postText, username: username },
                     { new: true, runValidators: true }
                 );
 

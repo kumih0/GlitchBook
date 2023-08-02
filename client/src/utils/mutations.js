@@ -53,7 +53,7 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
 
   export const ADD_COMMENT = gql`
-  mutation Mutation($postId: ID!, $commentText: String!) {
+  mutation addComment($postId: ID!, $commentText: String!) {
     addComment(postId: $postId, commentText: $commentText) {
       _id
       postTitle
@@ -74,3 +74,27 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }
   }
   `;
+
+  export const UPDATE_POST = gql`
+  mutation updatePost($postId: ID!, $postTitle: String!, $postText: String!) {
+    updatePost(postId: $postId, postTitle: $postTitle, postText: $postText) {
+      _id
+      postTitle
+      postText
+      username
+      likes
+      dislikes
+      createdAt
+      commentCount
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+    }
+  }
+  `;
+  
