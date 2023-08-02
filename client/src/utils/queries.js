@@ -1,18 +1,35 @@
-export const ALL_USERS = `#graphql
-query Query {
-    users {
-      _id
+const { gql } = require('@apollo/client');
+export const ALL_USERS = gql`
+query allUsers {
+  users {
+    _id
+    username
+    email
+    password
+    friends {
       username
-      email
-      password
-      posts {
-        _id
-        createdAt
-        postText
-        postTitle
-      }
     }
-  }`;
+    posts {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      comments {
+        _id
+        commentText
+        username
+        createdAt
+        likes
+        dislikes
+      }
+      commentCount
+    }
+    friendCount
+  }
+}`;
 
 export const GET_USER = `#graphql
   query Query($username: String!) {
