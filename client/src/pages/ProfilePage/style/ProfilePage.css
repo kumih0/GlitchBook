@@ -1,0 +1,78 @@
+/* ProfilePage.css */
+
+/* Your existing CSS styles... */
+
+.profile-page-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .content-container {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+  }
+  
+  .profile-data-container {
+    flex: 1;
+    margin-left: 100px;
+  }
+  
+  .comment-container {
+    flex: 1;
+    margin-right: 100px;
+  }
+  
+  /* Add styles to move up the search box label */
+  .search-box label {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: 0.5s;
+    line-height: 1.1;
+    font-family: "Dank Mono", ui-monospace, monospace;
+    text-align: center;
+  }
+  
+  .search-box input:focus ~ label,
+  .search-box input:valid ~ label {
+    top: -30px;
+    left: 0;
+    color: #fff;
+    font-size: 12px;
+  }
+  
+  /* Add styles for the post section */
+  .post {
+    position: relative;
+    left: 50%;
+    width: 850px;
+    height: 160px;
+    padding-left: 50px;
+    padding-top: 10px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-top: 100px;
+  }
+  
+  .post .header-info label {
+    /* Your existing styles for header info label */
+  }
+  
+  .post .header-info p {
+    /* Your existing styles for header info paragraph */
+  }
+  
+  .post-image {
+    /* Your existing styles for post image */
+  }
+  
+  /* Add any additional styles needed for your components */
