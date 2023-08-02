@@ -5,7 +5,6 @@ query allUsers {
     _id
     username
     email
-    password
     friends {
       _id
       username
@@ -15,7 +14,6 @@ query allUsers {
       _id
       postTitle
       postText
-      username
       createdAt
       likes
       dislikes
@@ -39,7 +37,6 @@ query getUser($username: String!) {
     _id
     username
     email
-    password
     posts {
       _id
       postTitle
@@ -54,6 +51,31 @@ query getUser($username: String!) {
       username
       email
       _id
+    }
+  }
+}`;
+
+export const GET_ME = gql`
+query me {
+  me {
+    _id
+    email
+    username
+    friendCount
+    posts {
+      _id
+      postTitle
+      postText
+      username
+      createdAt
+      likes
+      dislikes
+      commentCount
+    }
+    friends {
+      _id
+      username
+      email
     }
   }
 }`;
