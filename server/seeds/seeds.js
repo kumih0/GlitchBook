@@ -24,31 +24,51 @@ db.once('open', async () => {
       const username = randomUsername();
       const email = username + '@email.com';
       const password = makePassword(i);
+      const friends = [];
+      const posts = [];
 
-      const user = await User.create({ username, email, password });
+      const user = await User.create({ username, email, password, friends, posts });
       const token = signToken(user);
       await User.collection.updateOne({ _id: user._id }, { $set: { token: token } });
-      users.push({ username, email, password, token });
+      users.push({user, token });
     }
     console.log(users);
 
-    // //get random user helper funct
-    // const getRandomUser = (array) => {
-    //   return array[Math.floor(Math.random() * array.length)];
-    // };
+    //get random user helper funct
+    const getRandomUser = (array) => {
+      return array[Math.floor(Math.random() * array.length)].user.username;
+    };
 
-    // //empty posts array
-    // const allPosts = [];
+    //empty posts array
+    const allPosts = [];
 
-    // //generating 20 posts
-    // for (let i = 0; i < 20; i++) {
-    //   const username = getRandomUser(users);
-    //   const createdAt = randomDate();
-    //   const likes = randomNum();
-    //   const dislikes = randomNum();
+    //generating 20 posts
+    for (let i = 0; i < 20; i++) {
+      const username = getRandomUser(users);
+      const createdAt = randomDate();
+      const likes = randomNum();
+      const dislikes = randomNum();
 
-    //   allPosts.push({ ...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
-    // }
+      const post = await Post.create({...getRandomArrayItem(posts), username, createdAt, likes, dislikes });
+      allPosts.push(post);
+    }
+    console.log(allPosts);
+
+    //find user by username and push post into posts array
+    allPosts.map((post) => {
+      const username = post.username;
+      const index = users.findIndex((user) => user.user.username === username);
+     const postID = post._id;
+     console.log(postID);
+      users[index].user.posts.push(postID);
+      console.log(users[index]);
+    });
+
+
+
+
+  
+
     // //generate comments for each post, map funct
     // allPosts.map((post) => {
     //   //create empty comments array
@@ -93,9 +113,8 @@ db.once('open', async () => {
     // console.log(allPosts);
     // console.log(users);
 
-    // //attaching signtoken to each user while I'm at it
     // users.forEach((user) => {
-    //   const token = signToken(user);
+
     //   //loop through random number of friends and push random user into friends array
     //   for (let i = 0; i <= Math.floor(Math.random() * users.length); i++) {
     //     //filtering out redundant friends
