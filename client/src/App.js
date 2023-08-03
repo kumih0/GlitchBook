@@ -1,9 +1,12 @@
 import React from 'react';
-import { LoginForm, Signup} from './components';
-import { ProfilePage, HomePage, PostPage } from './pages';
+import LoginForm from './components/LoginForm';
+import Signup from './components/Signup';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
+import PostPage from './pages/PostPage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 const httpLink = createHttpLink({
@@ -31,11 +34,11 @@ const App = () => {
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<LoginForm />} />
-                        <Route path="/Profile" element={<ProfilePage />} />
+                        <Route path="/Signup" element={<Signup />} />
                         <Route path="/me" element={<ProfilePage />} />
+                        <Route path="/Profile" element={<ProfilePage />} />
                         <Route path="/Profile/:username" element={<ProfilePage />} />
                         <Route path="/Feed" element={<HomePage />} />
-                        <Route path="/Signup" element={<Signup />} />
                         <Route path='/Posts/:postId' element={<PostPage />} />
                     </Routes>
                 </div>

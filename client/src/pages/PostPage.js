@@ -1,7 +1,10 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import { NavBar, CommentList, CommentForm } from '../../components';
+import NavBar from '../components/NavBar';
+import CommentList from '../components/CommentList';
+import CommentForm from '../components/CommentForm';
+
 
 import { GET_ONE_POST } from '../utils/queries';
 import { LIKE_POST, DISLIKE_POST, ADD_BADGE, UPDATE_POST, DELETE_POST } from '../utils/mutations';

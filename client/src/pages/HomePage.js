@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { NavBar, PostList, PostForm } from '../../components';
-import Auth from '../../utils/auth';
+import NavBar from '../components/NavBar';
+import PostList from '../components/PostList';
+import PostForm from '../components/PostForm';
+
+import Auth from '../utils/auth';
 //importing our queries
-import { ALL_POSTS } from '../../utils/queries';
+import { ALL_POSTS } from '../utils/queries';
 //import our mutations
 // import { ADD_BADGE } from '../utils/mutations';
 

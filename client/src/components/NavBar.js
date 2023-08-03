@@ -1,6 +1,6 @@
+import '../assets/styles/NavBar.css'; 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../assets/styles/Navbar.css'; 
 import HomeButton from './HomeButton';
 
 const Navbar = () => {

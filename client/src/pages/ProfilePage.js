@@ -1,10 +1,14 @@
+import '../assets/styles/ProfilePage.css';
 import React from 'react';
-import { NavBar, Post, PostList, FriendsList } from '../../components';
+import NavBar from '../components/NavBar';
+import PostForm from '../components/PostForm';
+import PostList from '../components/PostList';
+import FriendsList from '../components/FriendsList';
+
 import { useQuery } from '@apollo/client';
 import { GET_ME, GET_USER } from '../utils/queries';
 import { useParams, Navigate } from 'react-router-dom';
 import Auth from '../utils/auth';
-import '../../assets/styles/ProfilePage.css';
 
 
 const ProfilePage = () => {
@@ -55,7 +59,7 @@ const ProfilePage = () => {
 
           {!userParam && (
             <div className="post-container">
-              <Post />
+              <PostForm />
             </div>
           )}
           <div className="post-list-container">
