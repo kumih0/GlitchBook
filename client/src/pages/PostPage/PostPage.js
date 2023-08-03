@@ -2,8 +2,8 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { useParams } from 'react-router-dom';
 
-import CommentList from '../../components/Commennts/CommentList';
-import CommentForm from '../../components/Commennts/CommentForm';
+import CommentList from '../../components/Comments/CommentList';
+import CommentForm from '../../components/Comments/CommentForm';
 
 import { GET_ONE_POST } from '../../utils/queries';
 import { LIKE_POST, DISLIKE_POST, ADD_BADGE, UPDATE_POST, DELETE_POST } from '../../utils/mutations';
