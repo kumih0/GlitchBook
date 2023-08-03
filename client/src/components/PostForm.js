@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_POST } from '../../utils/mutations';
-import { ALL_POSTS, GET_ME } from '../../utils/queries';
+import { ADD_POST } from '../utils/mutations';
+import { ALL_POSTS, GET_ME } from '../utils/queries';
 
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
-const ThoughtForm = () => {
+const PostForm = () => {
   const [postText, setpostText] = useState('');
   const [postTitle, setpostTitle] = useState('');
 
@@ -84,6 +84,16 @@ const ThoughtForm = () => {
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
+          <div className="col-12 col-lg-9">
+              <textarea
+                name="postTitle"
+                placeholder="Put your post title here"
+                value={postTitle}
+                className="form-input w-100"
+                style={{ lineHeight: '1', resize: 'vertical' }}
+                onChange={handleChange}
+              ></textarea>
+            </div>
             <div className="col-12 col-lg-9">
               <textarea
                 name="postText"
@@ -117,4 +127,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default PostForm;

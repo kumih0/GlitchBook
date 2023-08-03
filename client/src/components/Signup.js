@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../LoginForm/LoginForm';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth';
+import { ADD_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
 
 const Signup = (props) => {
     const [currentForm, setCurrentForm] = useState('login');
@@ -37,6 +37,7 @@ const Signup = (props) => {
 
     return (
         <>
+        {error && <span className="ml-2">sowwy {error.message} </span>}
             <form onSubmit={handleSubmit}>
                 <div className="inner-form">
                     <h2>Sign Up</h2>
@@ -61,7 +62,7 @@ const Signup = (props) => {
 
                     {/* Button to register a new user. */}
                     <button name="register" type="submit">Sign Up</button>
-                    <button onClick={handleLoginFormClick}>Already have an account? Log in here.</button>
+                    <input onClick={handleLoginFormClick} type='submit' value='Got an account?' />
                 </div>
             </form>
         </>

@@ -1,17 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
-import PostList from '../components/PostList';
-import PostForm from '../components/PostForm';
-
+import { useQuery } from '@apollo/client';
+import Navbar from '../../components/NavBar';
+import PostList from '../../components/Posts/PostList';
+import PostForm from '../../components/PostForm';
+import Auth from '../../utils/auth';
 //importing our queries
-import { ALL_POSTS } from '../utils/queries';
+import { ALL_POSTS } from '../../utils/queries';
 //import our mutations
-import { ADD_BADGE } from '../utils/mutations';
+// import { ADD_BADGE } from '../utils/mutations';
 
 const HomePage = () => {
     const { loading, data } = useQuery(ALL_POSTS);
-    const posts = data?.allPosts || [];
+    const posts = data?.posts || [];
+    console.log(data);
 
     // const [addBadge, { error }] = useMutation(ADD_BADGE);
 
@@ -27,6 +29,7 @@ const HomePage = () => {
 
     return (
         <main>
+            <Navbar />
             <div className="flex-row justify-center">
                 <div className="col-12 col-md-10 mb-3 p-3">
                     <PostForm />
@@ -35,7 +38,15 @@ const HomePage = () => {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        <PostList posts={posts} title="Join the conversation!" />
+                        <div className='posts-container'>
+                         <PostList posts={posts}
+                        title='Recent Posts'
+                        showTitle={true}
+                        showpostText={true}
+                        showUsername={true}
+                        showButtons={true}
+                      />
+                        </div>
                     )}
                 </div>
             </div>

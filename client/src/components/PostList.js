@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 const postList = ({
   posts,
   postTitle,
+  postText,
   showpostTitle = true,
   showUsername = true,
+  showButtons = true,
+  showpostText = true,
 }) => {
   if (!posts.length) {
-    return <h3>No posts Yet</h3>;
+    return <h3>No Posts Yet</h3>;
   }
 
   return (
@@ -21,7 +24,7 @@ const postList = ({
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${post.username}`}
+                  to={`/profile/${post.username}`}
                 >
                   {post.username} <br />
                   <span style={{ fontSize: '1rem' }}>
@@ -39,12 +42,29 @@ const postList = ({
             <div className="card-body bg-light p-2">
               <p>{post.postText}</p>
             </div>
+            <div className="card-footer d-flex justify-content-between bg-light p-2">
+            {showButtons && (
+              <button className="btn btn-sm btn-primary" >
+                Like : {post.likes}
+              </button>
+            )}
+            {showButtons && (
+              <button className="btn btn-sm btn-primary" >
+                Dislikes: {post.dislikes}
+              </button>
+            )}
+            {showButtons && (
+              <button className="btn btn-sm btn-primary" >
+                Comments: {post.commentCount}
+              </button>
+            )}
             <Link
               className="btn btn-primary btn-block btn-squared"
               to={`/posts/${post._id}`}
             >
               Join the discussion on this post.
             </Link>
+            </div>
           </div>
         ))}
     </div>
