@@ -7,6 +7,7 @@ const { signToken } = require('../utils/auth');
 const { randomUsername, makePassword } = require('./userData');
 //importing data helper funct
 const { getRandomArrayItem, randomDate, randomNum } = require('./data')
+const userSeeds = require('./userSeeds.json');
 const fs = require('fs');
 //importing post data
 const posts = require('./postData');
@@ -20,11 +21,13 @@ db.once('open', async () => {
     //delete all collections
     await Post.deleteMany({});
     await User.deleteMany({});
-
+    fs.writeFile('userDataSeeds.json', '', (err) => console.log(err ? err : 'resetting userDataSeeds.json'));
     //create badges
     const badges = await Badges.insertMany(allBadges);
     console.log(badges);
 
+    const testUsers = await User.create(userSeeds);
+    console.log(testUsers);
     //creating empty users array
     const users = [];
     //creating 15 users
@@ -39,7 +42,7 @@ db.once('open', async () => {
       const token = signToken(user);
       await User.collection.updateOne({ _id: user._id }, { $set: { token: token } });
 
-      fs.appendFile('userDataSeeds.json', JSON.stringify({username, email, password }) + '\n' + JSON.stringify(user._id), (err) => console.log(err ? err : 'it worked dummy '));
+      fs.appendFile('userDataSeeds.json', JSON.stringify(user._id) + '\n' + JSON.stringify({username, email, password }) + '\n', (err) => console.log(err ? err : 'it worked dummy '));
       users.push({ user, token });
     }
     console.log(users);
