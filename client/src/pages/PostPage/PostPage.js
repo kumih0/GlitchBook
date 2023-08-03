@@ -46,15 +46,15 @@ const PostPage = () => {
         }
     }
 
-    const handleBadge = async () => {
-        try {
-            await addBadge({
-                variables: { badgeId: badgeId }
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    // const handleBadge = async () => {
+    //     try {
+    //         await addBadge({
+    //             variables: { badgeId: badgeId }
+    //         });
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
 
     const handleUpdate = async () => {
         try {
