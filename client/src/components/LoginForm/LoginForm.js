@@ -10,7 +10,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showAlert, setShowAlert] = useState(false);
-  const [loginUser, { error }] = useMutation(LOGIN);
+  const [loginUser, { data, error }] = useMutation(LOGIN);
 
   useEffect(() => {
     if (error) {
@@ -27,12 +27,15 @@ const LoginForm = () => {
         variables: { email, password }
       });
       Auth.login(data.login.token);
-      navigate('/profile');
       console.log(data);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const handleLoginFormClick = () => {
+    navigate('/profile');
+}
 
   return (
     <form onSubmit={handleLogin}>
@@ -49,7 +52,6 @@ const LoginForm = () => {
       <div className="inner-form">
         <h2>Login</h2>
 
-        {/* Input field for user to enter login. */}
         <div className="form-input">
           <label>Email:</label>
           <input
@@ -60,7 +62,6 @@ const LoginForm = () => {
           />
         </div>
 
-        {/* Input field for user to enter password. */}
         <div className="form-input">
           <label>Password:</label>
           <input
@@ -70,11 +71,11 @@ const LoginForm = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
-        {/* Button to submit the login form. */}
-        <input type="submit" name="login" value="Log In"/>
-
-        {/* Button to register a new user. */}
+      { data ? (
+        <input type="submit" name="login" value="Log In" onClick={handleLoginFormClick}/>
+      ) : (
+        <input type="submit" name="login" value="Log In" />
+      )}
         <Link to="/signup"><input type='submit' name='signup' value='Register' /></Link>
       </div>
     </form>
