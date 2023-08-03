@@ -1,5 +1,8 @@
 import React from 'react';
-import { Navbar, ProfileData, FriendsList, Post, PostForm } from '../../components';
+import NavBar from '../../components/NavBar/NavBar';
+import ProfileData from '../../components/ProfileData/ProfileData';
+import Post from '../../components/Posts/PostForm';
+import PostList from '../../components/Posts/PostList';
 import { useQuery } from '@apollo/client';
 import { GET_ME, GET_USER } from '../../utils/queries';
 import { useParams, Navigate } from 'react-router-dom';
@@ -35,13 +38,12 @@ const ProfilePage = () => {
 
   return (
     <div className="profile-page-container">
-      <Navbar />
+      <NavBar />
       <div className="content-container">
         <div className="profile-data-container">
           <ProfileData />
         </div>
         <div className="comment-container">
-          <Comment />
         </div>
         <div className="post-container">
           <Post />

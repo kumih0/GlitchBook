@@ -1,7 +1,7 @@
 import React from 'react';
 import './style/ProfileData.css';
-// import UserScore from '../UserScore/UserScore';
-// import FriendsList from '../FriendsList/FriendsList';
+import UserScore from '../UserScore/UserScore';
+import FriendsList from '../FriendsList/FriendsList';
 import Auth from '../../utils/auth';
 
 const ProfileData = () => {
@@ -13,7 +13,7 @@ const ProfileData = () => {
       <div className="profile-container">
         <div className="profile-picture">
         <img
-            src="#"
+            src="./img/BananaMan.png"
             alt="Profile"
             style={{ width: '150px', height: '150px' }}
           />

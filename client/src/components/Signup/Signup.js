@@ -61,7 +61,7 @@ const Signup = (props) => {
 
                     {/* Button to register a new user. */}
                     <button name="register" type="submit">Sign Up</button>
-                    <button onClick={handleLoginFormClick}>Already have an account? Log in here.</button>
+                    <input onClick={handleLoginFormClick} type='submit' value='Got an account?' />
                 </div>
             </form>
         </>
