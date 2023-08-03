@@ -7,7 +7,7 @@ import { ALL_POSTS, GET_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
+const PostForm = () => {
   const [postText, setpostText] = useState('');
   const [postTitle, setpostTitle] = useState('');
 
@@ -117,4 +117,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default PostForm;

@@ -12,7 +12,7 @@ import { ALL_POSTS } from '../../utils/queries';
 
 const HomePage = () => {
     const { loading, data } = useQuery(ALL_POSTS);
-    const posts = data?.allPosts || [];
+    const posts = data?.posts || [];
     console.log(data);
 
     // const [addBadge, { error }] = useMutation(ADD_BADGE);
@@ -38,9 +38,15 @@ const HomePage = () => {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
+                        <div className='posts-container'>
                          <PostList posts={posts}
                         title='Recent Posts'
+                        showTitle={true}
+                        showpostText={true}
+                        showUsername={true}
+                        showButtons={true}
                       />
+                        </div>
                     )}
                 </div>
             </div>
