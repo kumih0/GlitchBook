@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-
+import Navbar from '../../components/NavBar/NavBar';
 import CommentList from '../../components/Comments/CommentList';
 import CommentForm from '../../components/Comments/CommentForm';
 
@@ -12,14 +12,15 @@ import Auth from '../../utils/auth';
 
 const PostPage = () => {
     const { postId } = useParams();
+    console.log(postId);
 
     const { loading, data } = useQuery(GET_ONE_POST, {
         variables: { postId: postId }
     });
 
     const post = data?.post || {};
-    console.log(post);
-    
+    console.log(data);
+
 
     const [likePost] = useMutation(LIKE_POST);
     const [dislikePost] = useMutation(DISLIKE_POST);
@@ -82,7 +83,8 @@ const PostPage = () => {
         return <div>Loading...</div>;
     }
     return (
-        
+        <>
+        <Navbar />
         <div className='container'>
             <div className='card'>
                 <div className='card-header'>
@@ -93,7 +95,7 @@ const PostPage = () => {
                     </span>
                 </div>
                 <div className='card-body'>
-                    <p className='post-text'>{post.postText}</p>
+                    <h4 className='post-text'>{post.postText}</h4>
                 </div>
                 <div className='card-footer'>
                     <span className='post-likes'>
@@ -117,6 +119,7 @@ const PostPage = () => {
                 {Auth.loggedIn() && <CommentForm postId={post._id} />}
             </div>
         </div>
+        </>
     );
 };
 

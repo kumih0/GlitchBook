@@ -13,6 +13,7 @@ import { ALL_POSTS } from '../../utils/queries';
 const HomePage = () => {
     const { loading, data } = useQuery(ALL_POSTS);
     const posts = data?.allPosts || [];
+    console.log(data);
 
     // const [addBadge, { error }] = useMutation(ADD_BADGE);
 
@@ -31,20 +32,14 @@ const HomePage = () => {
             <Navbar />
             <div className="flex-row justify-center">
                 <div className="col-12 col-md-10 mb-3 p-3">
-                    {Auth.loggedIn() ? (
-                    <PostForm /> 
-                    ) : (
-                        <Link to='/'><p>Join the conversation and log in!</p></Link>
-                )}
+                    <PostForm />
                 </div>
                 <div className="col-12 col-md-10 mb-3 p-3">
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        data && <PostList posts={posts}
+                         <PostList posts={posts}
                         title='Recent Posts'
-                        showTitle={true}
-                        showUsername={true}
                       />
                     )}
                 </div>

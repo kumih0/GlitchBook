@@ -7,6 +7,7 @@ import { GET_ME, GET_USER } from '../../utils/queries';
 import { useParams, Navigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import './style/ProfilePage.css';
+import FriendsList from '../../components/FriendsList/FriendsList';
 
 const ProfilePage = () => {
 
@@ -51,6 +52,7 @@ const ProfilePage = () => {
               <div className="email">
                 Email: {user.email}
               </div>
+              <FriendsList/>
             </div>
 
           {!userParam && (
