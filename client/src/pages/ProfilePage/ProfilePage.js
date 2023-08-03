@@ -1,13 +1,13 @@
 import React from 'react';
-import NavBar from '../../components/NavBar/NavBar';
-import Post from '../../components/Posts/PostForm';
+import NavBar from '../../components/NavBar';
+import Post from '../../components/PostForm';
 import PostList from '../../components/Posts/PostList';
 import { useQuery } from '@apollo/client';
 import { GET_ME, GET_USER } from '../../utils/queries';
 import { useParams, Navigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import './style/ProfilePage.css';
-import FriendsList from '../../components/FriendsList/FriendsList';
+import FriendsList from '../../components/FriendsList';
 
 const ProfilePage = () => {
 

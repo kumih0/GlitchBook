@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import Navbar from '../../components/NavBar/NavBar';
+import Navbar from '../../components/NavBar';
 import PostList from '../../components/Posts/PostList';
-import PostForm from '../../components/Posts/PostForm';
+import PostForm from '../../components/PostForm';
 import Auth from '../../utils/auth';
 //importing our queries
 import { ALL_POSTS } from '../../utils/queries';

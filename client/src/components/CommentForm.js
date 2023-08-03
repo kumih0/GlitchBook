@@ -5,9 +5,9 @@ import { useMutation } from '@apollo/client';
 // import like_button from './img/like_button.png'
 // import dislike_button from './img/dislike_button.png'
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_COMMENT } from '../utils/mutations';
 
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
 const CommentForm = ({ postId }) => {
   const [commentText, setCommentText] = useState('');

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_POST } from '../../utils/mutations';
-import { ALL_POSTS, GET_ME } from '../../utils/queries';
+import { ADD_POST } from '../utils/mutations';
+import { ALL_POSTS, GET_ME } from '../utils/queries';
 
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
 const PostForm = () => {
   const [postText, setpostText] = useState('');

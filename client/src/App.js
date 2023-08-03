@@ -3,7 +3,7 @@ import './styles/styles.css'
 import './components/LoginForm/style/LoginForm.css'
 import React from 'react';
 import LoginForm from './components/LoginForm/LoginForm';
-import Signup from './components/Signup/Signup';
+import Signup from './components/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import HomePage from './pages/HomePage/HomePage';
 import PostPage from './pages/PostPage/PostPage';

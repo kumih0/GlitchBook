@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from '@apollo/client';
-import { LIKE_COMMENT, DISLIKE_COMMENT } from '../../utils/mutations';
+import { LIKE_COMMENT, DISLIKE_COMMENT } from '../utils/mutations';
 import { useParams } from 'react-router-dom';
 
 
