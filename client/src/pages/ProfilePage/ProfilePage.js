@@ -7,6 +7,15 @@ import Auth from '../../utils/auth';
 import './style/ProfilePage.css';
 
 const ProfilePage = () => {
+
+  const { username: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? GET_USER : GET_ME, {
+    variables: { username: userParam }
+  });
+
+  const user = data?.me || data?.user || {};
+
   return (
     <div className="profile-page-container">
       <Navbar />
