@@ -21,7 +21,7 @@ const PostPage = () => {
 
     const [likePost] = useMutation(LIKE_POST);
     const [dislikePost] = useMutation(DISLIKE_POST);
-    const [addBadge] = useMutation(ADD_BADGE);
+    // const [addBadge] = useMutation(ADD_BADGE);
     const [updatePost] = useMutation(UPDATE_POST);
     const [deletePost] = useMutation(DELETE_POST);
 
