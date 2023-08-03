@@ -24,7 +24,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { data } = await loginUser({
-        variables: { email, password }
+        variables: { email: email, password: password }
       });
       Auth.login(data.login.token);
       console.log(data);
@@ -39,14 +39,9 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleLogin}>
-      {error && 
-          <div
-          dismissible
-          onClose={() => setShowAlert(false)}
-          show={showAlert}
-          variant="danger"
-        >
-          {error.message} u fukin bwoken it :3
+      {error && showAlert &&  
+        <div className="alert alert-danger" role="alert">
+          {error.message} u heckin bwoken it :3
         </div>
       }
       <div className="inner-form">

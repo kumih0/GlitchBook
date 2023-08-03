@@ -37,6 +37,7 @@ const Signup = (props) => {
 
     return (
         <>
+        {error && <span className="ml-2">sowwy {error.message} </span>}
             <form onSubmit={handleSubmit}>
                 <div className="inner-form">
                     <h2>Sign Up</h2>

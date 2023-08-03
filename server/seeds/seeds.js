@@ -7,6 +7,7 @@ const { signToken } = require('../utils/auth');
 const { randomUsername, makePassword } = require('./userData');
 //importing data helper funct
 const { getRandomArrayItem, randomDate, randomNum } = require('./data')
+const fs = require('fs');
 //importing post data
 const posts = require('./postData');
 //importing comment data
@@ -37,6 +38,8 @@ db.once('open', async () => {
       const user = await User.create({ username, email, password, friends, posts });
       const token = signToken(user);
       await User.collection.updateOne({ _id: user._id }, { $set: { token: token } });
+
+      fs.appendFile('userDataSeeds.json', JSON.stringify({username, email, password }) + '\n' + JSON.stringify(user._id), (err) => console.log(err ? err : 'it worked dummy '));
       users.push({ user, token });
     }
     console.log(users);
@@ -62,13 +65,13 @@ db.once('open', async () => {
     //updating users with post_ids for populate funct
     for (const post of allPosts) {
       const postID = post._id;
-      console.log(postID);
+      
       const user = users.find((user) => user.user.username === post.username);
 
       user.user.posts.push(postID);
-      console.log(user.user);
+      
       const updatedUser = await User.collection.updateOne({ _id: user.user._id }, { $set: { posts: user.user.posts } });
-      console.log(updatedUser);
+      
     }
 
     for (const post of allPosts) {
@@ -93,7 +96,6 @@ db.once('open', async () => {
       }
       //set comments array to post.comments
       post.comments = postComments;
-      console.log(postComments);
       await Post.collection.updateOne({ _id: post._id }, { $set: { comments: post.comments } });
     }
 
@@ -104,12 +106,10 @@ db.once('open', async () => {
       //loop through total friends and push random user into friends array
       for (let i = 0; i <= totalFriends; i++) {
         const newFriend = (getRandomArrayItem(users)).user._id;
-        console.log(newFriend);
         friends.push(newFriend);
       }
       //set friends array to user.friends
       user.user.friends = friends;
-      console.log(user.user);
 
       await User.collection.updateOne({ _id: user.user._id }, { $set: { friends: user.user.friends } });
       }

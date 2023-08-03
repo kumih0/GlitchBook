@@ -1,11 +1,9 @@
-// import like_button from './img/like_button.png'
-// import dislike_button from './img/dislike_button.png'
-// import { Link } from "react-router-dom";
 import './style/Comment.css'
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
+// import like_button from './img/like_button.png'
+// import dislike_button from './img/dislike_button.png'
 
 import { ADD_COMMENT } from '../../utils/mutations';
 
