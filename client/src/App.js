@@ -1,11 +1,9 @@
-// App.js
-
 import './App.css';
 import './styles/styles.css'
 import './components/LoginForm/style/LoginForm.css'
 import React from 'react';
 import LoginForm from './components/LoginForm/LoginForm';
-import Signup from './components/Signup/Signup';
+import Signup from './components/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -39,7 +37,8 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/Profile" element={<ProfilePage />} />
-                        <Route path="/PostFeed" element={<LoginForm />} />
+                        <Route path="/Profile/:username" element={<ProfilePage />} />
+                        <Route path="/PostFeed" element={<HomePage />} />
                         <Route path="/Signup" element={<Signup />} />
                     </Routes>
                 </div>

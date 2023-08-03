@@ -1,6 +1,5 @@
 import React from 'react';
 import NavBar from '../../components/NavBar/NavBar';
-import ProfileData from '../../components/ProfileData/ProfileData';
 import Post from '../../components/Posts/PostForm';
 import PostList from '../../components/Posts/PostList';
 import { useQuery } from '@apollo/client';
@@ -40,19 +39,39 @@ const ProfilePage = () => {
     <div className="profile-page-container">
       <NavBar />
       <div className="content-container">
-        <div className="profile-data-container">
-          <ProfileData />
+        <h2 className="bg-dark text-light header">
+          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+        </h2>
+
+        <div className="profile-container">
+            <div className="user-info">
+              <div className="username">
+                User Name: {user.username}
+              </div>
+              <div className="email">
+                Email: {user.email}
+              </div>
+            </div>
+
+          <div className="comment-container">
+          </div>
+          {!userParam && (
+            <div className="post-container">
+              <Post />
+            </div>
+          )}
+          <div className="post-list-container">
+            <PostList
+              posts={user.posts}
+              title={`${user.username}'s posts...`}
+              showTitle={false}
+              showUsername={false}
+            />
+          </div>
         </div>
-        <div className="comment-container">
-        </div>
-        <div className="post-container">
-          <Post />
       </div>
-    </div>
     </div>
   );
 };
 
-
-
-export default ProfilePage;
+ export default ProfilePage;
