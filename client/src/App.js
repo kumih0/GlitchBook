@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage/HomePage';
 import PostPage from './pages/PostPage/PostPage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Routes, Route } from 'react-router-dom';
 
 
 const httpLink = createHttpLink({
