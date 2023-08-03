@@ -3,8 +3,10 @@ import './styles/styles.css'
 import './components/LoginForm/style/LoginForm.css'
 import React from 'react';
 import LoginForm from './components/LoginForm/LoginForm';
-import Signup from './components/shit/shit';
+import Signup from './components/Signup/Signup';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import HomePage from './pages/HomePage/HomePage';
+import PostPage from './pages/PostPage/PostPage';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -36,6 +38,7 @@ const App = () => {
                     <Routes>
                         <Route path="/" element={<LoginForm />} />
                         <Route path="/Profile" element={<ProfilePage />} />
+                        <Route path="/me" element={<ProfilePage />} />
                         <Route path="/Profile/:username" element={<ProfilePage />} />
                         <Route path="/PostFeed" element={<HomePage />} />
                         <Route path="/Signup" element={<Signup />} />

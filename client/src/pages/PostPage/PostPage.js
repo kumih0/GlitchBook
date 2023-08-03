@@ -1,5 +1,5 @@
 import React from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 
 import CommentList from '../../components/Comments/CommentList';

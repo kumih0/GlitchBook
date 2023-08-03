@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/react-hooks';
-import PostList from '../components/PostList';
-import PostForm from '../components/PostForm';
+import { useQuery } from '@apollo/client';
+import PostList from '../components/Posts/PostList';
+import PostForm from '../components/Posts/PostForm';
 import Auth from '../utils/auth';
 //importing our queries
 import { ALL_POSTS } from '../utils/queries';
 //import our mutations
-import { ADD_BADGE } from '../utils/mutations';
+// import { ADD_BADGE } from '../utils/mutations';
 
 const HomePage = () => {
     const { loading, data } = useQuery(ALL_POSTS);
