@@ -40,9 +40,17 @@ const ProfilePage = () => {
         <div className="profile-data-container">
           <ProfileData />
         </div>
+        <div className="comment-container">
+          <Comment />
+        </div>
+        <div className="post-container">
+          <Post />
       </div>
+    </div>
     </div>
   );
 };
+
+
 
 export default ProfilePage;

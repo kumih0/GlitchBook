@@ -1,53 +1,35 @@
+// import like_button from './img/like_button.png'
+// import dislike_button from './img/dislike_button.png'
+// import { Link } from "react-router-dom";
+import './style/Comment.css'
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_POST } from '../../utils/mutations';
-import { ALL_POSTS, GET_ME } from '../../utils/queries';
+import { ADD_COMMENT } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const ThoughtForm = () => {
-  const [postText, setpostText] = useState('');
-  const [postTitle, setpostTitle] = useState('');
-
+const CommentForm = ({ postId }) => {
+  const [commentText, setCommentText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addPost, { error }] = useMutation(ADD_POST, {
-    update(cache, { data: { addPost } }) {
-      try {
-        const { posts } = cache.readQuery({ query: ALL_POSTS });
-
-        cache.writeQuery({
-          query: ALL_POSTS,
-          data: { posts: [addPost, ...posts] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
-
-      // update me object's cache
-      const { me } = cache.readQuery({ query: GET_ME });
-      cache.writeQuery({
-        query: GET_ME,
-        data: { me: { ...me, posts: [...me.posts, addPost] } },
-      });
-    },
-  });
+  const [addComment, { error }] = useMutation(ADD_COMMENT);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const { data } = await addPost({
+      const { data } = await addComment({
         variables: {
-          postTitle,
-          postText,
+          postId,
+          commentText,
           username: Auth.getProfile().data.username,
         },
       });
 
-      setpostText('');
+      setCommentText('');
     } catch (err) {
       console.error(err);
     }
@@ -56,20 +38,15 @@ const ThoughtForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'postText' && value.length <= 280) {
-      setpostText(value);
-      setCharacterCount(value.length);
-
-    }
-    if (name === 'postTitle' && value.length <= 280) {
-      setpostTitle(value);
+    if (name === 'commentText' && value.length <= 280) {
+      setCommentText(value);
       setCharacterCount(value.length);
     }
-};
+  };
 
   return (
     <div>
-      <h3>Make at post at your own peril</h3>
+      <h4>What are your thoughts on this post?</h4>
 
       {Auth.loggedIn() ? (
         <>
@@ -79,6 +56,7 @@ const ThoughtForm = () => {
             }`}
           >
             Character Count: {characterCount}/280
+            {error && <span className="ml-2">{error.message}</span>}
           </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
@@ -86,9 +64,9 @@ const ThoughtForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="postText"
-                placeholder="Here's a new thought..."
-                value={postText}
+                name="commentText"
+                placeholder="Add your comment..."
+                value={commentText}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -97,19 +75,14 @@ const ThoughtForm = () => {
 
             <div className="col-12 col-lg-3">
               <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Post
+                Add Comment
               </button>
             </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
           </form>
         </>
       ) : (
         <p>
-          You need to be logged in to share your posts. Please{' '}
+          You need to be logged in to share your thoughts. Please{' '}
           <Link to="/">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -117,4 +90,4 @@ const ThoughtForm = () => {
   );
 };
 
-export default ThoughtForm;
+export default CommentForm;
