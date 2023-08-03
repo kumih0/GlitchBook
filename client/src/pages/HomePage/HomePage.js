@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import Navbar from '../../components/NavBar/NavBar';
 import PostList from '../../components/Posts/PostList';
 import PostForm from '../../components/Posts/PostForm';
 import Auth from '../../utils/auth';
@@ -27,6 +28,7 @@ const HomePage = () => {
 
     return (
         <main>
+            <Navbar />
             <div className="flex-row justify-center">
                 <div className="col-12 col-md-10 mb-3 p-3">
                     {Auth.loggedIn() ? (
@@ -39,7 +41,11 @@ const HomePage = () => {
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        data && <PostList posts={posts} title="Join the conversation!" />
+                        data && <PostList posts={posts}
+                        title='Recent Posts'
+                        showTitle={true}
+                        showUsername={true}
+                      />
                     )}
                 </div>
             </div>

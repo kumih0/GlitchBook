@@ -53,8 +53,6 @@ const ProfilePage = () => {
               </div>
             </div>
 
-          <div className="comment-container">
-          </div>
           {!userParam && (
             <div className="post-container">
               <Post />
