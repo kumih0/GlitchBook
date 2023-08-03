@@ -32,7 +32,6 @@ const client = new ApolloClient({
 const App = () => {
     return (
         <ApolloProvider client={client}>
-            
                 <div className="App">
                     <Routes>
                         <Route path="/" element={<LoginForm />} />
@@ -40,6 +39,7 @@ const App = () => {
                         <Route path="/Profile/:username" element={<ProfilePage />} />
                         <Route path="/PostFeed" element={<HomePage />} />
                         <Route path="/Signup" element={<Signup />} />
+                        <Route path='/Posts/:id' element={<PostPage />} />
                     </Routes>
                 </div>
             

@@ -21,7 +21,7 @@ const postList = ({
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${post.username}`}
+                  to={`/profile/${post.username}`}
                 >
                   {post.username} <br />
                   <span style={{ fontSize: '1rem' }}>
