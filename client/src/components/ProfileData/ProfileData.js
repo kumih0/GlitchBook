@@ -1,11 +1,7 @@
 import React from 'react';
 import './style/ProfileData.css';
-import UserScore from '../UserScore/UserScore';
-import FriendsList from '../FriendsList/FriendsList';
-import Auth from '../../utils/auth';
 
-const ProfileData = () => {
-
+const ProfileData = ({user = {}}) => {
 
   return (
     <div className="profile-data">
@@ -19,27 +15,25 @@ const ProfileData = () => {
           />
         </div>
 
-        {/* Username and Email */}
         <div className="user-info">
           <div className="username">
-            User Name: BananaMan420
-            {/* User's Username JSX Content */}
+            User Name: {user.username}
           </div>
           <div className="email">
-          Email: BananaMan420@email.com
-            {/* User's Email JSX Content */}
+          Email: {user.email}
           </div>
         </div>
 
-        {/* Achievements */}
-        
-        <div className="achievements">
+        <div className="badges">
+          {user.badges.map((badge) => (
+            <div className="badge" key={badge._id}>
+              <h5>{badge.name}</h5>
+              <p>{badge.description}</p>
+              </div>
+          ))}
         </div>
       </div>
-      <UserScore></UserScore>
-      <FriendsList></FriendsList>
     </div>
-    
   );
 }
 
