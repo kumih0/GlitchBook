@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import PostList from '../components/PostList';
 import PostForm from '../components/PostForm';
-
+import Auth from '../utils/auth';
 //importing our queries
 import { ALL_POSTS } from '../utils/queries';
 //import our mutations
@@ -29,13 +29,17 @@ const HomePage = () => {
         <main>
             <div className="flex-row justify-center">
                 <div className="col-12 col-md-10 mb-3 p-3">
-                    <PostForm />
+                    {Auth.loggedIn() ? (
+                    <PostForm /> 
+                    ) : (
+                        <Link to='/'><p>Join the conversation and log in!</p></Link>
+                )}
                 </div>
                 <div className="col-12 col-md-10 mb-3 p-3">
                     {loading ? (
                         <div>Loading...</div>
                     ) : (
-                        <PostList posts={posts} title="Join the conversation!" />
+                        data && <PostList posts={posts} title="Join the conversation!" />
                     )}
                 </div>
             </div>
