@@ -1,25 +1,22 @@
 import React from 'react';
 import './style/ProfileData.css';
-import UserScore from '../UserScore/UserScore';
-import FriendsList from '../FriendsList/FriendsList';
+// import UserScore from '../UserScore/UserScore';
+// import FriendsList from '../FriendsList/FriendsList';
 import Auth from '../../utils/auth';
 
 const ProfileData = () => {
-  const token = Auth.loggedIn() ? Auth.getToken() : null;
-  const user = token ? Auth.getProfile().data : null;
-  console.log(user);
+
+
   return (
     <div className="profile-data">
       <div className="profile-label">Profile</div>
       <div className="profile-container">
-        {/* Profile Picture */}
         <div className="profile-picture">
         <img
-            src="https://media.discordapp.net/attachments/1086145365008461885/1135750642883899433/Banana_Man.png?width=675&height=675" // Replace with the actual image path
+            src="#"
             alt="Profile"
             style={{ width: '150px', height: '150px' }}
           />
-          {/* Your Profile Picture JSX Content */}
         </div>
 
         {/* Username and Email */}
