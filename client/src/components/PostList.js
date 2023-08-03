@@ -12,7 +12,7 @@ const postList = ({
   showButtons = true,
   showpostText = true,
 }) => {
-
+ 
 
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
