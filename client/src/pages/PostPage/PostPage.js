@@ -99,10 +99,8 @@ const PostPage = () => {
                 </div>
                 <div className='card-footer'>
                     <span className='post-likes'>
-                        <button className='btn btn-primary' onClick={handleLike}>Like</button>
-                        <button className='btn btn-primary' onClick={handleDislike}>Dislike</button>
-                        <p className='post-likes'>Likes: {post.likes}</p>
-                        <p className='post-dislikes'>Dislikes: {post.dislikes}</p>
+                        <button className='btn btn-primary' onClick={handleLike}>Likes: {post.likes}</button>
+                        <button className='btn btn-primary' onClick={handleDislike}>Dislikes: {post.dislikes}</button>
                     </span>
                     <p className='post-comment-count'>Comments: {post.commentCount}</p>
                     {Auth.loggedIn() && Auth.getProfile().data.username !== post.username && (
