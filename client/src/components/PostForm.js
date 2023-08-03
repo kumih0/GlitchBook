@@ -84,7 +84,7 @@ const PostForm = () => {
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-          <div className="col-12 col-lg-9">
+          <div className="col-12 col-lg-9 post-box">
               <textarea
                 name="postTitle"
                 placeholder="Put your post title here"
@@ -94,13 +94,13 @@ const PostForm = () => {
                 onChange={handleChange}
               ></textarea>
             </div>
-            <div className="col-12 col-lg-9">
+            <div className="col-12 col-lg-9 post-box">
               <textarea
                 name="postText"
                 placeholder="Here's a new thought..."
                 value={postText}
                 className="form-input w-100"
-                style={{ lineHeight: '1.5', resize: 'vertical' }}
+                style={{ lineHeight: '3', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
             </div>
