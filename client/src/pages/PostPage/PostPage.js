@@ -25,7 +25,7 @@ const PostPage = () => {
     const [updatePost] = useMutation(UPDATE_POST);
     const [deletePost] = useMutation(DELETE_POST);
 
-    //add all of these and convert to actions/resolvers 
+    //add all of these and convert to actions/resolvers? 
     const handleLike = async () => {
         try {
             await likePost({
