@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginForm, Signup } from './components';
+import { LoginForm, Signup} from './components';
 import { ProfilePage, HomePage, PostPage } from './pages';
 import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
+import { LIKE_POST, DISLIKE_POST } from '../utils/mutations';
 
 const postList = ({
   posts,
@@ -10,6 +12,8 @@ const postList = ({
   showButtons = true,
   showpostText = true,
 }) => {
+
+
   if (!posts.length) {
     return <h3>No Posts Yet</h3>;
   }
@@ -39,9 +43,11 @@ const postList = ({
                 </>
               )}
             </h4>
+            {showpostText && (
             <div className="card-body bg-light p-2">
-              <p>{post.postText}</p>
+              <p>{postText}</p>
             </div>
+            )}
             <div className="card-footer d-flex justify-content-between bg-light p-2">
             {showButtons && (
               <button className="btn btn-sm btn-primary" >
