@@ -18,6 +18,8 @@ const PostPage = () => {
     });
 
     const post = data?.post || {};
+    console.log(post);
+    
 
     const [likePost] = useMutation(LIKE_POST);
     const [dislikePost] = useMutation(DISLIKE_POST);
@@ -80,6 +82,7 @@ const PostPage = () => {
         return <div>Loading...</div>;
     }
     return (
+        
         <div className='container'>
             <div className='card'>
                 <div className='card-header'>
