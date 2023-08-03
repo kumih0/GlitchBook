@@ -1,6 +1,5 @@
-// Importing the 'Link' component from 'react-router-dom' and the 'GlitchBookLogo' image.
 import { Link } from "react-router-dom";
-import GlitchBookLogo from "./img/GlitchBookLogo.gif"
+import GlitchBookLogo from "../assets/GlitchBookLogo.gif";
 
 // The 'HomeButton' component that renders a button with a GlitchBook logo as a link to the home page.
 const HomeButton = () => {

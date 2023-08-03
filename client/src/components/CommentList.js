@@ -53,8 +53,8 @@ const CommentList = ({ comments = [] }) => {
                   </span>
                 </h5>
                 <p className="card-body">{comment.commentText}</p>
-                <button className='btn btn-primary' onClick={handleLike}>Likes: {comment.likes}</button>
-                <button className='btn btn-primary' onClick={handleDislike}>Dislikes: {comment.dislikes}</button>
+                <button className='btn btn-primary' onClick={handleLike(comment._id)}>Likes: {comment.likes}</button>
+                <button className='btn btn-primary' onClick={handleDislike(comment._id)}>Dislikes: {comment.dislikes}</button>
               </div>
             </div>
           ))}

@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import Navbar from '../../components/NavBar';
-import PostList from '../../components/Posts/PostList';
-import PostForm from '../../components/PostForm';
-import Auth from '../../utils/auth';
+import { NavBar, PostList, PostForm } from '../../components';
+import Auth from '../utils/auth';
 //importing our queries
-import { ALL_POSTS } from '../../utils/queries';
+import { ALL_POSTS } from '../utils/queries';
 //import our mutations
 // import { ADD_BADGE } from '../utils/mutations';
 
@@ -15,6 +13,7 @@ const HomePage = () => {
     const posts = data?.posts || [];
     console.log(data);
 
+    const loggedIn = Auth.loggedIn();
     // const [addBadge, { error }] = useMutation(ADD_BADGE);
 
     // const handleAddBadge = async (badgeId) => {
@@ -29,7 +28,7 @@ const HomePage = () => {
 
     return (
         <main>
-            <Navbar />
+            <NavBar />
             <div className="flex-row justify-center">
                 <div className="col-12 col-md-10 mb-3 p-3">
                     <PostForm />

@@ -1,14 +1,12 @@
 import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { useParams } from 'react-router-dom';
-import Navbar from '../../components/NavBar';
-import CommentList from '../../components/CommentList';
-import CommentForm from '../../components/CommentForm';
+import { NavBar, CommentList, CommentForm } from '../../components';
 
-import { GET_ONE_POST } from '../../utils/queries';
-import { LIKE_POST, DISLIKE_POST, ADD_BADGE, UPDATE_POST, DELETE_POST } from '../../utils/mutations';
+import { GET_ONE_POST } from '../utils/queries';
+import { LIKE_POST, DISLIKE_POST, ADD_BADGE, UPDATE_POST, DELETE_POST } from '../utils/mutations';
 
-import Auth from '../../utils/auth';
+import Auth from '../utils/auth';
 
 const PostPage = () => {
     const { postId } = useParams();
@@ -84,7 +82,7 @@ const PostPage = () => {
     }
     return (
         <>
-        <Navbar />
+        <NavBar />
         <div className='container'>
             <div className='card'>
                 <div className='card-header'>

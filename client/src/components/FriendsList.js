@@ -1,5 +1,5 @@
 import React from 'react';
-import './style/FriendsList.css'; 
+import '../assets/styles/'; 
 
 const FriendsList = ({friends = []}) => {
 
