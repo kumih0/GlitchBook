@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -9,8 +9,16 @@ const LoginForm = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  const [showAlert, setShowAlert] = useState(false);
   const [loginUser, { error }] = useMutation(LOGIN);
+
+  useEffect(() => {
+    if (error) {
+      setShowAlert(true);
+    } else {
+      setShowAlert(false);
+    }
+  }, [error]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -19,7 +27,7 @@ const LoginForm = () => {
         variables: { email, password }
       });
       Auth.login(data.login.token);
-      navigate('/me');
+      navigate('/profile');
       console.log(data);
     } catch (err) {
       console.error(err);
@@ -28,6 +36,16 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleLogin}>
+      {error && 
+          <div
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          variant="danger"
+        >
+          {error.message} u fukin bwoken it :3
+        </div>
+      }
       <div className="inner-form">
         <h2>Login</h2>
 
