@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMutation } from '@apollo/client';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const LoginForm = () => {
   };
 
   const handleLoginFormClick = () => {
-    navigate('/profile');
+    return <Navigate to="/profile" />;
 }
 
   return (
