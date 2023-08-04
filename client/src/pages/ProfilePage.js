@@ -39,30 +39,28 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="profile-page-container">
+    <div className="flex-row justify-center mb-3">
       <NavBar />
-      <div className="content-container">
-        <h2 className="bg-dark text-light header">
-          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-        </h2>
-
         <div className="profile-container">
-            <div className="user-info">
-              <div className="username">
-                User Name: {user.username}
-              </div>
-              <div className="email">
-                Email: {user.email}
-              </div>
-              <FriendsList/>
+          <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+            Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+          </h2>
+          <div className="user-info">
+            <div className="username">
+              Username: {user.username}
             </div>
+            <div className="email">
+              Email: {user.email}
+            </div>
+            <FriendsList />
+          </div>
 
           {!userParam && (
-            <div className="post-container">
+            <div className="col-12 col-md-10 mb-3 p-3">
               <PostForm />
             </div>
           )}
-          <div className="post-list-container">
+          <div className="col-12 col-md-10 mb-5">
             <PostList
               posts={user.posts}
               title={`${user.username}'s posts...`}
@@ -71,9 +69,8 @@ const ProfilePage = () => {
             />
           </div>
         </div>
-      </div>
     </div>
   );
 };
 
- export default ProfilePage;
+export default ProfilePage;

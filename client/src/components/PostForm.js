@@ -65,7 +65,7 @@ const PostForm = () => {
       setpostTitle(value);
       setCharacterCount(value.length);
     }
-};
+  };
 
   return (
     <div>
@@ -73,42 +73,34 @@ const PostForm = () => {
 
       {Auth.loggedIn() ? (
         <>
-          <p
-            className={`m-0 ${
-              characterCount === 280 || error ? 'text-danger' : ''
-            }`}
-          >
-            Character Count: {characterCount}/280
-          </p>
           <form
             className="flex-row justify-center justify-space-between-md align-center"
             onSubmit={handleFormSubmit}
           >
-          <div className="col-12 col-lg-9 post-box">
-              <textarea
-                name="postTitle"
-                placeholder="Put your post title here"
-                value={postTitle}
-                className="form-input w-100"
-                style={{ lineHeight: '1', resize: 'vertical' }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
             <div className="col-12 col-lg-9 post-box">
               <textarea
-                name="postText"
-                placeholder="Here's a new thought..."
-                value={postText}
+                name="postTitle"
+                placeholder="Post title here"
+                value={postTitle}
                 className="form-input w-100"
-                style={{ lineHeight: '3', resize: 'vertical' }}
+                style={{ lineHeight: '1' }}
                 onChange={handleChange}
               ></textarea>
+              <textarea
+                name="postText"
+                placeholder="Add your post here"
+                value={postText}
+                className="form-input w-100"
+                style={{ lineHeight: '2', resize: 'vertical' }}
+                onChange={handleChange}
+              ></textarea>
+              <p className={`m-0 ${characterCount === 280 || error ? 'text-danger' : ''}`} >
+                {characterCount}/280
+              </p>
             </div>
 
             <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Post
-              </button>
+              <input className="btn-block py-3" type="submit" value="Add Post" onClick={handleFormSubmit} />
             </div>
             {error && (
               <div className="col-12 my-3 bg-danger text-white p-3">

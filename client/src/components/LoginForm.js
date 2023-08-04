@@ -67,7 +67,7 @@ const LoginForm = () => {
           />
         </div>
       { data ? (
-        <input type="submit" name="login" value="Log In" onClick={handleLoginFormClick}/>
+        <input type="submit" name="login" value="Log In" onClick={() => handleLoginFormClick}/>
       ) : (
         <input type="submit" name="login" value="Log In" />
       )}

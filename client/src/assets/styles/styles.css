@@ -1,4 +1,9 @@
-/* Navbar container */
+* {
+    font-family: "Dank Mono", ui-monospace, monospace;
+    
+}
+
+
 .navbar {
     background-color: #1d2821;
     height: 50px;
@@ -156,7 +161,7 @@ button:hover, input[type=submit]:hover {
 }
 
 .post-box textarea {
-    height: 1rem;
+    height: 2rem;
     width: 80%;
     padding: 10px;
     display: inline-block;
@@ -191,7 +196,7 @@ button:hover, input[type=submit]:hover {
     margin-top: 100px;
 }
 
-.post .header-info label {
+.post .header-info {
     position: absolute;
     top: 10px;
     left: 30px;
@@ -340,7 +345,7 @@ button:hover, input[type=submit]:hover {
     text-align: center;
 }
 
-.inner-form input[type=submit] {
+ input[type=submit] {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
@@ -358,17 +363,6 @@ button:hover, input[type=submit]:hover {
     letter-spacing: 4px;
     border-radius: 15px;
     border-color: #6ce972;
-}
-
-
-.inner-form input[type=submit]:hover {
-    background: linear-gradient(#304538, #2b3834);
-    color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #56e304,
-    0 0 8px #56e304,
-    0 0 25px #56e304,
-    0 0 60px #56e304;
 }
 
 .comment-box {
