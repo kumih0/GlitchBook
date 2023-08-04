@@ -60,11 +60,11 @@ Checkout the pseudocode and idea process for how we approached this project!
 
   ## Live Link of Deployed Application
 
-  ![Live Link of Deployed Application](https://glitchbook-72c348d487cc.herokuapp.com/)
+  [Live Link of Deployed Application](https://glitchbook-72c348d487cc.herokuapp.com/)
   
   ## Questions
   If you have any questions, you can contact me on Github (https://github.com/kumih0) or email me at h6f9l5@u.northwestern.edu.
 
 ## Heroku Deployed Live Link
 
-![Check it out here!](https://glitchbook-72c348d487cc.herokuapp.com/)
+[Check it out here!] (https://glitchbook-72c348d487cc.herokuapp.com/)
