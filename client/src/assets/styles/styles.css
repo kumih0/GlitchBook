@@ -1,8 +1,14 @@
 * {
     font-family: "Dank Mono", ui-monospace, monospace;
-    
+    color: #fff;
 }
 
+.card-body{
+    background: linear-gradient(#1d2821, #1d2128);
+    box-shadow: 0 10px 15px rgb(47, 104, 38, 0.60);
+    border-color: #6ce972;
+
+}
 
 .navbar {
     background-color: #1d2821;
@@ -183,7 +189,8 @@ button:hover, input[type=submit]:hover {
 .post {
     position: relative;
     left: 50%;
-    width: 15rem;
+    width: 80%;
+    color: #fff;
     transform: translate(-50%, -50%);
     background: rgba(0,0,0,.5);
     box-sizing: border-box;
@@ -238,7 +245,7 @@ button:hover, input[type=submit]:hover {
 
 .post .bottom-section p {
     position: relative;
-    top: 30px;
+
     padding: 10px ;
     font-size: 14px;
     color: #fff;
@@ -407,7 +414,7 @@ button:hover, input[type=submit]:hover {
     font-size: 0px;
 }
 
-.comment-box input[type=submit],  {
+.comment-box input[type=submit]  {
     position: absolute;
     left: 100%;
     display: inline-block;

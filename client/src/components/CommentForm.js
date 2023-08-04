@@ -2,8 +2,6 @@ import '../assets/styles/Comment.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-// import like_button from './img/like_button.png'
-// import dislike_button from './img/dislike_button.png'
 
 import { ADD_COMMENT } from '../utils/mutations';
 
@@ -21,11 +19,12 @@ const CommentForm = ({ postId }) => {
     try {
       const { data } = await addComment({
         variables: {
-          postId,
-          commentText,
+          postId: postId,
+          commentText: commentText,
           username: Auth.getProfile().data.username,
         },
       });
+
 
       setCommentText('');
     } catch (err) {
@@ -43,7 +42,7 @@ const CommentForm = ({ postId }) => {
   };
 
   return (
-    <div>
+    <div className='comment-box'>
       <h4>What are your thoughts on this post?</h4>
 
       {Auth.loggedIn() ? (
