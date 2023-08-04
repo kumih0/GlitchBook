@@ -44,7 +44,6 @@ const HomePage = () => {
                          <PostList posts={posts}
                         title='Recent Posts'
                         showTitle={true}
-                        showpostText={true}
                         showUsername={true}
                         showButtons={true}
                       />
